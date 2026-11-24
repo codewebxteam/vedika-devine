@@ -1,0 +1,14 @@
+{
+  "name": "@vedika/mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vedika Divine Cross-Platform Mobile App (React Native / Expo) utilizing shared @vedika/backend",
+  "scripts": {
+    "start": "echo 'Run: npx create-expo-app@latest . --template blank-typescript or expo start'",
+    "android": "echo 'Run on Android device/emulator'",
+    "ios": "echo 'Run on iOS simulator'"
+  },
+  "dependencies": {
+    "@vedika/backend": "file:../backend"
+  }
+}

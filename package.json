@@ -1,0 +1,21 @@
+{
+  "name": "vedika-devine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vedika Divine E-Commerce Platform - Shared Backend, Next.js Web Frontend & Cross-Platform Mobile App",
+  "scripts": {
+    "dev": "npm run dev --prefix web",
+    "build": "npm run build --prefix web",
+    "start": "npm run start --prefix web",
+    "lint": "npm run lint --prefix web"
+  },
+  "workspaces": [
+    "backend",
+    "web",
+    "mobile"
+  ],
+  "author": "Vedika Divine Team",
+  "dependencies": {
+    "firebase": "^13.4.0"
+  }
+}

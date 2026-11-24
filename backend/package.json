@@ -1,0 +1,16 @@
+{
+  "name": "@vedika/backend",
+  "version": "1.0.0",
+  "description": "Shared Backend Services, Firebase Integration & Business Logic for Vedika Divine (Web & Mobile)",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "firebase": "^11.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

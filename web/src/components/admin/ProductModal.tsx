@@ -186,7 +186,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     setError(null);
     try {
       const cleanFileName = `${(formData.slug || "candle").replace(/[^a-z0-9]+/g, "-")}_${Date.now()}.jpg`;
-      const res = await uploadToImageKit(file, cleanFileName, "/vedika-devine/products");
+      const res = await uploadToImageKit(file, cleanFileName, "/vedika-divine/products");
       setFormData((prev) => ({
         ...prev,
         thumbnail: res.url,
@@ -782,7 +782,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   </div>
                 </div>
                 <p className="text-[10px] text-stone-500">
-                  Upload your genuine candle photograph. It will be uploaded straight to your ImageKit CDN account (/vedika-devine/products).
+                  Upload your genuine candle photograph. It will be uploaded straight to your ImageKit CDN account (/vedika-divine/products).
                 </p>
               </div>
             )}

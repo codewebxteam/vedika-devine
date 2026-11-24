@@ -66,7 +66,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
       const cleanFileName = `${cleanSlug || "category"}_${Date.now()}.jpg`;
-      const res = await uploadToImageKit(file, cleanFileName, "/vedika-devine/categories");
+      const res = await uploadToImageKit(file, cleanFileName, "/vedika-divine/categories");
       setImage(res.url);
     } catch (err: any) {
       console.error("ImageKit upload error:", err);

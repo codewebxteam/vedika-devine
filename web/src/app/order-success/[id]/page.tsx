@@ -45,7 +45,7 @@ export default function OrderSuccessPage() {
             Thank You! Your Candle Order is Placed
           </h1>
           <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-lg mx-auto">
-            Thank you for shopping with Vedika Devine. Our Kushinagar unit has received your order and begun careful protective packaging for safe doorstep delivery.
+            Thank you for shopping with Vedika Divine. Our Kushinagar unit has received your order and begun careful protective packaging for safe doorstep delivery.
           </p>
         </div>
 

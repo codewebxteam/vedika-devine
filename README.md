@@ -1,4 +1,4 @@
-# Vedika Devine 🕯️✨
+# Vedika Divine 🕯️✨
 > **Light Up Good Vibes** — Handcrafted Artisanal Soy Wax & Scented Candles  
 > **Firm Legal Name:** M/S RMPG VEDIKA DIVINE HOME INDUSTRIES (Registered Partnership Firm)  
 > **Manufacturing Atelier:** Kushinagar, Uttar Pradesh, India • **Helpline:** +91 8874205655 / +91 9129598282  
@@ -6,7 +6,7 @@
 ---
 
 ## 🏛️ Project Overview
-**Vedika Devine** is a luxury direct-to-consumer (D2C) and wholesale B2B e-commerce platform dedicated to hand-poured, 100% paraffin-free soy wax candles, therapeutic aroma jars, temple akhand diyas, and festive corporate gifting sets.
+**Vedika Divine** is a luxury direct-to-consumer (D2C) and wholesale B2B e-commerce platform dedicated to hand-poured, 100% paraffin-free soy wax candles, therapeutic aroma jars, temple akhand diyas, and festive corporate gifting sets.
 
 ### 🌟 Key Highlights
 - **100% Paraffin-Free & Eco-Luxury:** Organic soy wax handcrafting with natural lead-free cotton wicks.

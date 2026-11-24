@@ -11,7 +11,7 @@ export interface ImageKitUploadResult {
 export async function uploadToImageKit(
   file: File | Blob,
   fileName?: string,
-  folder: "/vedika-devine/products" | "/vedika-devine/categories" = "/vedika-devine/products"
+  folder: string = "/vedika-divine/products"
 ): Promise<ImageKitUploadResult> {
   const formData = new FormData();
   formData.append("file", file);

@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     const fileName =
       (formData.get("fileName") as string) || `vedika_${Date.now()}.jpg`;
     const folder =
-      (formData.get("folder") as string) || "/vedika-devine/products";
+      (formData.get("folder") as string) || "/vedika-divine/products";
 
     if (!file) {
       return NextResponse.json(

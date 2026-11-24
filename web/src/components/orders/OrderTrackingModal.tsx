@@ -301,7 +301,7 @@ export const OrderTrackingModal: React.FC<OrderTrackingModalProps> = ({
                 Packaging & Fragile Care
               </span>
               <p className="text-[11px] text-stone-600 leading-relaxed">
-                All Vedika Devine candles are encased in heavy-duty thermocol & air-bubble cushioning to guarantee zero melted wax or cracked glass in transit.
+                All Vedika Divine candles are encased in heavy-duty thermocol & air-bubble cushioning to guarantee zero melted wax or cracked glass in transit.
               </p>
             </div>
           </div>

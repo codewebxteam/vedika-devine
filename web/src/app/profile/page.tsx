@@ -231,7 +231,7 @@ export default function ProfilePage() {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/40 text-amber-300 text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 fill-amber-400" />
-              <span>Vedika Devine Member Account</span>
+              <span>Vedika Divine Member Account</span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
               {profile?.displayName || "My Candle Account"}

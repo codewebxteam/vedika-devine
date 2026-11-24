@@ -76,12 +76,12 @@ export const Header: React.FC = () => {
           <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
             <img
               src="/images/logo.png"
-              alt="Vedika Devine Logo"
+              alt="Vedika Divine Logo"
               className="h-11 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-xs"
             />
             <div className="flex flex-col">
               <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-stone-900 group-hover:text-amber-700 transition-colors leading-none">
-                Vedika Devine
+                Vedika Divine
               </span>
               <span className="text-[8px] sm:text-[9px] tracking-[0.28em] font-semibold text-amber-700 uppercase mt-0.5">
                 LIGHT UP GOOD VIBES
@@ -305,7 +305,7 @@ export const Header: React.FC = () => {
                     <>
                       <div className="px-4 py-2 border-b border-amber-50">
                         <p className="text-[10px] text-stone-400 uppercase tracking-wider font-semibold">
-                          Vedika Devine Account
+                          Vedika Divine Account
                         </p>
                       </div>
                       <Link

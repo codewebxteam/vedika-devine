@@ -161,7 +161,7 @@ export default function TrackOrderPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/15 border border-amber-400/40 text-amber-300 text-xs font-semibold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 fill-amber-400" />
-            <span>Vedika Devine Courier Fulfillment</span>
+            <span>Vedika Divine Courier Fulfillment</span>
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight">

@@ -138,7 +138,7 @@ export default function AboutPage() {
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border-2 border-amber-400/80 shadow-2xl p-2 bg-black">
                 <img
                   src="/images/hero.png"
-                  alt="Vedika Devine Artisan Unit"
+                  alt="Vedika Divine Artisan Unit"
                   className="w-full h-full object-contain"
                 />
               </div>

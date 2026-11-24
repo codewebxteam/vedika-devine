@@ -39,7 +39,7 @@ export default function ContactPage() {
             <span>Customer & Dealer Support</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            Contact <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-200 to-amber-500">Vedika Devine</span>
+            Contact <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-200 to-amber-500">Vedika Divine</span>
           </h1>
           <p className="text-xs sm:text-sm text-stone-300 max-w-md mx-auto leading-relaxed">
             Questions regarding candle orders, custom corporate fragrances, or regional dealership? Our Kushinagar team is here to assist.

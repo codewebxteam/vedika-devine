@@ -284,7 +284,7 @@ export const HeroBanner: React.FC = () => {
             <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-xl mx-auto group z-10">
               <img
                 src="/images/hero.png"
-                alt="Vedika Devine Vanilla Dream Scented Candle with Luxury Packaging & Flowers"
+                alt="Vedika Divine Vanilla Dream Scented Candle with Luxury Packaging & Flowers"
                 className="w-full h-auto object-contain max-h-[300px] sm:max-h-[420px] lg:max-h-[520px] drop-shadow-[0_16px_36px_rgba(217,119,6,0.18)] mx-auto hover:scale-102 transition-transform duration-500"
               />
 

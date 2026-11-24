@@ -170,6 +170,8 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/admin"
+                  scroll={true}
+                  onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "instant" })}
                   className="hover:text-amber-300 text-stone-200 font-medium flex items-center gap-1.5 hover:translate-x-1 transition-all"
                 >
                   <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
@@ -297,6 +299,8 @@ export const Footer: React.FC = () => {
 
             <Link
               href="/admin"
+              scroll={true}
+              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "instant" })}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 border border-amber-400/60 text-amber-300 hover:text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105"
             >
               <ShieldCheck className="w-4 h-4 text-amber-400" />

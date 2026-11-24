@@ -3,11 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
-import { TopAnnouncement } from "@/components/layout/TopAnnouncement";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { MobileNav } from "@/components/layout/MobileNav";
-import { CartDrawer } from "@/components/cart/CartDrawer";
+import { StoreLayoutShell } from "@/components/layout/StoreLayoutShell";
 
 export const metadata: Metadata = {
   title: "Vedika Divine Candles | Handcrafted Luxury Soy Wax & Scented Candles | Authorized Dealer",
@@ -39,11 +35,7 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             <WishlistProvider>
-              <Header />
-              <CartDrawer />
-              <main className="flex-1 w-full max-w-full overflow-x-hidden pb-16 sm:pb-0">{children}</main>
-              <Footer />
-              <MobileNav />
+              <StoreLayoutShell>{children}</StoreLayoutShell>
             </WishlistProvider>
           </CartProvider>
         </AuthProvider>

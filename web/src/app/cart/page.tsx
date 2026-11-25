@@ -251,16 +251,16 @@ export default function CartPage() {
               <div className="pt-2">
                 <Link
                   href="/checkout"
-                  className="w-full py-4 rounded-full bg-linear-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black font-extrabold text-xs uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all hover:scale-102 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 rounded-full bg-linear-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-stone-950 font-extrabold text-xs uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all hover:scale-102 flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Proceed to Secure Checkout</span>
-                  <ArrowRight className="w-4 h-4 text-black" />
+                  <span>Proceed to Quick Checkout (COD)</span>
+                  <ArrowRight className="w-4 h-4 text-stone-950" />
                 </Link>
               </div>
 
               <div className="pt-2 flex items-center justify-center gap-2 text-[10px] text-stone-500">
                 <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
-                <span>100% Encrypted SSL • UPI / Cards / COD Supported</span>
+                <span>100% Safe Fragile Delivery • Cash on Delivery (COD) Available</span>
               </div>
             </div>
           </div>

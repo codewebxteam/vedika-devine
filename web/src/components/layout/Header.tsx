@@ -10,6 +10,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
   Building2,
   PackageCheck,
   Crown,
@@ -17,6 +18,8 @@ import {
   Flame,
   Sparkles,
   Truck,
+  Heart,
+  Phone,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
@@ -62,33 +65,34 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-amber-100/60 transition-all w-full">
       {/* Main Navbar Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-40">
-        <div className="flex items-center justify-between h-20 gap-4">
-          {/* Left: Mobile hamburger */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-stone-700 hover:text-amber-800 transition-colors"
-            aria-label="Toggle Navigation"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-40">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4">
+          {/* Left: Mobile Hamburger & Brand Identity Logo */}
+          <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-1.5 -ml-1 text-stone-800 hover:text-amber-800 transition-colors shrink-0 cursor-pointer"
+              aria-label="Toggle Navigation"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5 text-stone-900" /> : <Menu className="w-5 h-5 text-stone-900" />}
+            </button>
 
-          {/* Left: Brand Identity Logo */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <img
-              src="/images/logo.png"
-              alt="Vedika Divine Logo"
-              className="h-11 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-xs"
-            />
-            <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-stone-900 group-hover:text-amber-700 transition-colors leading-none">
-                Vedika Divine
-              </span>
-              <span className="text-[8px] sm:text-[9px] tracking-[0.28em] font-semibold text-amber-700 uppercase mt-0.5">
-                LIGHT UP GOOD VIBES
-              </span>
-            </div>
-          </Link>
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0">
+              <img
+                src="/images/logo.png"
+                alt="Vedika Divine Logo"
+                className="h-9 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-xs shrink-0"
+              />
+              <div className="flex flex-col min-w-0">
+                <span className="font-serif text-base sm:text-2xl font-bold tracking-wide sm:tracking-wider text-stone-900 group-hover:text-amber-700 transition-colors leading-tight truncate">
+                  Vedika Divine
+                </span>
+                <span className="text-[7.5px] sm:text-[9px] tracking-[0.18em] sm:tracking-[0.28em] font-semibold text-amber-700 uppercase leading-none hidden sm:block">
+                  LIGHT UP GOOD VIBES
+                </span>
+              </div>
+            </Link>
+          </div>
 
           {/* Center: Desktop Navigation Links (matches reference design) */}
           <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-700">
@@ -179,8 +183,8 @@ export const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* Right: Actions (Search, User, Cart with Golden badge) */}
-          <div className="flex items-center gap-2.5 sm:gap-3.5">
+          {/* Right: Actions (Search, User, Cart with Golden badge - No clipping on mobile) */}
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
             {/* Desktop Social Channels */}
             <div className="hidden lg:flex items-center gap-1.5 pr-2 border-r border-amber-200/70">
               <a
@@ -219,7 +223,7 @@ export const Header: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="p-2 rounded-full text-stone-700 hover:text-amber-700 hover:bg-amber-50/60 transition-colors"
+                className="p-1.5 sm:p-2 rounded-full text-stone-700 hover:text-amber-700 hover:bg-amber-50/60 transition-colors cursor-pointer"
                 title="Search Candles"
                 aria-label="Search"
               >
@@ -228,7 +232,7 @@ export const Header: React.FC = () => {
 
               {/* Popover Search Bar */}
               {searchOpen && (
-                <div className="absolute right-0 top-full mt-2 w-72 sm:w-80 bg-white rounded-2xl shadow-2xl border border-amber-200 p-2.5 z-50 animate-in fade-in slide-in-from-top-2">
+                <div className="absolute right-0 top-full mt-2 w-[calc(100vw-24px)] max-w-xs sm:w-80 bg-white rounded-2xl shadow-2xl border border-amber-200 p-2.5 z-50 animate-in fade-in slide-in-from-top-2">
                   <form onSubmit={handleSearchSubmit} className="relative">
                     <input
                       type="text"
@@ -248,7 +252,7 @@ export const Header: React.FC = () => {
             <div className="relative z-50">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="p-2 rounded-full text-stone-700 hover:text-amber-700 hover:bg-amber-50/60 transition-colors cursor-pointer"
+                className="p-1.5 sm:p-2 rounded-full text-stone-700 hover:text-amber-700 hover:bg-amber-50/60 transition-colors cursor-pointer"
                 title="Account"
                 aria-label="User Account"
               >
@@ -402,17 +406,78 @@ export const Header: React.FC = () => {
             {/* Shopping Bag Icon with Golden Count Badge (matches mockup) */}
             <button
               onClick={() => setIsCartDrawerOpen(true)}
-              className="relative p-2 text-stone-700 hover:text-amber-700 transition-transform active:scale-95"
+              className="relative p-1.5 sm:p-2 text-stone-800 hover:text-amber-700 transition-transform active:scale-95 cursor-pointer shrink-0"
               title="Shopping Cart"
               aria-label="View Cart"
             >
               <ShoppingCart className="w-5 h-5 text-stone-800" />
-              <span className="absolute -top-1 -right-1 bg-amber-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
-                {totalItems}
-              </span>
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-amber-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                  {totalItems}
+                </span>
+              )}
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Quick-Nav Options Strip: Ensures all store categories & sections are directly visible and accessible on phones */}
+      <div className="md:hidden bg-amber-50/75 border-t border-amber-200/60 px-2.5 py-1.5 overflow-x-auto scrollbar-none flex items-center gap-1.5 text-xs select-none shadow-inner">
+        <Link
+          href="/"
+          className={`px-3 py-1 rounded-full text-[11px] font-semibold transition-all shrink-0 ${
+            pathname === "/"
+              ? "bg-amber-600 text-white shadow-xs"
+              : "bg-white text-stone-700 hover:bg-amber-100 border border-amber-200/80"
+          }`}
+        >
+          Home
+        </Link>
+        <Link
+          href="/shop"
+          className={`px-3 py-1 rounded-full text-[11px] font-semibold transition-all shrink-0 ${
+            pathname === "/shop" && !pathname.includes("category")
+              ? "bg-amber-600 text-white shadow-xs"
+              : "bg-white text-stone-700 hover:bg-amber-100 border border-amber-200/80"
+          }`}
+        >
+          ✨ All Candles
+        </Link>
+        {categories.map((cat) => (
+          <Link
+            key={cat.id}
+            href={`/shop?category=${cat.slug}`}
+            className="px-3 py-1 rounded-full text-[11px] font-medium bg-white text-stone-700 hover:bg-amber-100 hover:text-amber-800 border border-amber-200/80 transition-colors shrink-0"
+          >
+            {cat.name}
+          </Link>
+        ))}
+        <Link
+          href="/wholesale"
+          className="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-950 text-amber-300 hover:bg-amber-900 border border-amber-800/60 transition-colors shrink-0 flex items-center gap-1"
+        >
+          <Building2 className="w-3 h-3 text-amber-400" />
+          <span>Wholesale</span>
+        </Link>
+        <Link
+          href="/track-order"
+          className="px-3 py-1 rounded-full text-[11px] font-medium bg-white text-stone-700 hover:bg-amber-100 border border-amber-200/80 transition-colors shrink-0 flex items-center gap-1"
+        >
+          <Truck className="w-3 h-3 text-amber-600" />
+          <span>Track Order</span>
+        </Link>
+        <Link
+          href="/about"
+          className="px-3 py-1 rounded-full text-[11px] font-medium bg-white text-stone-700 hover:bg-amber-100 border border-amber-200/80 transition-colors shrink-0"
+        >
+          About
+        </Link>
+        <Link
+          href="/contact"
+          className="px-3 py-1 rounded-full text-[11px] font-medium bg-white text-stone-700 hover:bg-amber-100 border border-amber-200/80 transition-colors shrink-0"
+        >
+          Contact
+        </Link>
       </div>
 
       {/* User Requested: Ultra-Thin Black Marquee Strip with Auto Right-to-Left Infinite Rotation */}
@@ -476,88 +541,232 @@ export const Header: React.FC = () => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#FAF7F2] border-b border-amber-200/80 px-5 py-4 space-y-3 animate-in fade-in slide-in-from-top-2 text-xs">
-          <div className="space-y-1 pb-3 border-b border-amber-100">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 font-semibold text-stone-800 hover:text-amber-800"
+        <div className="md:hidden bg-[#FAF7F2] border-b border-amber-200/80 px-4 py-4 space-y-3.5 animate-in fade-in slide-in-from-top-2 text-xs max-h-[85vh] overflow-y-auto">
+          {/* User Account / Welcome Card */}
+          <div className="p-3 rounded-2xl bg-white border border-amber-200/90 shadow-xs flex items-center justify-between">
+            {user ? (
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-9 h-9 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm shrink-0 border border-amber-300">
+                  {profile?.displayName?.charAt(0) || user.email?.charAt(0) || "U"}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] text-stone-500 uppercase tracking-wider font-semibold">
+                    Namaste
+                  </p>
+                  <p className="font-bold text-stone-900 truncate text-xs">
+                    {profile?.displayName || user.email}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+                  <UserIcon className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="font-bold text-stone-900 text-xs">Namaste Guest</p>
+                  <p className="text-[10px] text-stone-500">Sign in for exclusive member privileges</p>
+                </div>
+              </div>
+            )}
+
+            {user ? (
+              <button
+                onClick={async () => {
+                  await logout();
+                  setMobileMenuOpen(false);
+                }}
+                className="px-2.5 py-1 text-[11px] font-bold text-rose-600 hover:bg-rose-50 rounded-lg border border-rose-200 shrink-0 cursor-pointer"
               >
-                {link.name}
+                Sign Out
+              </button>
+            ) : (
+              <Link
+                href="/auth/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-1.5 text-[11px] font-bold text-amber-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-xs shrink-0"
+              >
+                Sign In
               </Link>
-            ))}
+            )}
           </div>
 
-          <div className="pt-1 flex flex-col gap-2">
+          {/* Candle Varieties & Collections Accordion/List */}
+          <div className="bg-white rounded-2xl p-3 border border-amber-200/80 shadow-xs space-y-2">
+            <div className="flex items-center justify-between pb-1.5 border-b border-amber-100">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
+                <Flame className="w-3.5 h-3.5 text-amber-600" />
+                <span>Candle Varieties & Collections</span>
+              </span>
+              <Link
+                href="/shop"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-[10px] font-bold text-amber-700 hover:underline"
+              >
+                View All →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-1 pt-1">
+              {categories.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/shop?category=${cat.slug}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-1.5 px-2 rounded-xl text-stone-700 hover:bg-amber-50 hover:text-amber-900 transition-colors"
+                >
+                  <span className="text-xs font-medium">{cat.name}</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Core Store Navigation Links */}
+          <div className="bg-white rounded-2xl p-3 border border-amber-200/80 shadow-xs space-y-1">
             <Link
-              href="/track-order"
+              href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 text-stone-800 font-bold flex items-center gap-2"
+              className="flex items-center gap-2.5 py-2 px-2 rounded-xl text-stone-800 hover:bg-amber-50 font-semibold text-xs"
             >
-              <Truck className="w-4 h-4 text-amber-600" />
-              <span>Track My Order</span>
-            </Link>
-            <Link
-              href="/profile"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 text-stone-700 font-medium flex items-center gap-2"
-            >
-              <UserIcon className="w-4 h-4 text-amber-600" />
-              <span>My Account & Addresses</span>
+              <span>🏠</span>
+              <span>Home Store</span>
             </Link>
             <Link
               href="/wholesale"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 text-amber-800 font-bold flex items-center gap-2"
+              className="flex items-center justify-between py-2 px-2 rounded-xl bg-amber-50/70 text-amber-950 font-bold text-xs border border-amber-200/60"
             >
-              <Building2 className="w-4 h-4" />
-              <span>Wholesale & Dealer Portal</span>
+              <div className="flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-amber-700" />
+                <span>Wholesale & Bulk Cartons</span>
+              </div>
+              <span className="text-[10px] px-2 py-0.5 bg-amber-600 text-white rounded-full font-bold">
+                B2B Rates
+              </span>
+            </Link>
+            <Link
+              href="/track-order"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5 py-2 px-2 rounded-xl text-stone-800 hover:bg-amber-50 font-semibold text-xs"
+            >
+              <Truck className="w-4 h-4 text-amber-600" />
+              <span>Track Consignment</span>
+            </Link>
+            <Link
+              href="/wishlist"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5 py-2 px-2 rounded-xl text-stone-800 hover:bg-amber-50 font-semibold text-xs"
+            >
+              <Heart className="w-4 h-4 text-rose-500" />
+              <span>My Saved Wishlist</span>
+            </Link>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setIsCartDrawerOpen(true);
+              }}
+              className="w-full flex items-center justify-between py-2 px-2 rounded-xl text-stone-800 hover:bg-amber-50 font-semibold text-xs cursor-pointer text-left"
+            >
+              <div className="flex items-center gap-2.5">
+                <ShoppingCart className="w-4 h-4 text-amber-600" />
+                <span>Shopping Cart</span>
+              </div>
+              <span className="px-2 py-0.5 bg-amber-100 text-amber-800 font-bold text-[10px] rounded-full border border-amber-300">
+                {totalItems} items
+              </span>
+            </button>
+            <Link
+              href="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5 py-2 px-2 rounded-xl text-stone-800 hover:bg-amber-50 font-semibold text-xs"
+            >
+              <span>ℹ️</span>
+              <span>About Kushinagar Heritage</span>
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5 py-2 px-2 rounded-xl text-stone-800 hover:bg-amber-50 font-semibold text-xs"
+            >
+              <Phone className="w-4 h-4 text-amber-600" />
+              <span>Contact Us & Support</span>
+            </Link>
+          </div>
+
+          {/* Portals: Dealer Partner & Admin */}
+          <div className="bg-white rounded-2xl p-3 border border-amber-200/80 shadow-xs space-y-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 px-2 block">
+              Official Portals
+            </span>
+            <Link
+              href="/dealer/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2.5 py-1.5 px-2 rounded-xl text-amber-900 hover:bg-amber-50 font-semibold text-xs"
+            >
+              <Building2 className="w-4 h-4 text-amber-600" />
+              <span>Dealer Partner Portal</span>
             </Link>
             <Link
               href="/admin"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 text-stone-600 font-medium flex items-center gap-2"
+              className="flex items-center gap-2.5 py-1.5 px-2 rounded-xl text-stone-700 hover:bg-amber-50 font-semibold text-xs"
             >
               <Crown className="w-4 h-4 text-amber-600" />
               <span>Admin Management</span>
             </Link>
           </div>
 
-          {/* Social Channels in Mobile Menu */}
-          <div className="pt-3 border-t border-amber-200/60 flex items-center justify-between">
-            <span className="text-[11px] font-bold text-amber-900 uppercase tracking-wider">
-              Follow Us:
-            </span>
-            <div className="flex items-center gap-2">
+          {/* Helpline & Social Links */}
+          <div className="p-3 bg-stone-900 text-stone-200 rounded-2xl space-y-2.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-amber-400 font-bold text-xs">📞 Helpline:</span>
+                <a href="tel:8874205655" className="text-white font-bold text-xs hover:text-amber-300">
+                  +91 8874205655
+                </a>
+              </div>
               <a
-                href={APP_CONFIG.SOCIAL_LINKS.INSTAGRAM}
+                href="https://wa.me/918874205655?text=Hello%20Vedika%20Divine,%20I%20have%20an%20enquiry"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="p-2 rounded-xl bg-white text-stone-700 hover:text-pink-600 border border-amber-200 shadow-xs"
+                className="px-2.5 py-1 rounded-lg bg-emerald-600 text-white font-bold text-[10px] hover:bg-emerald-500 flex items-center gap-1"
               >
-                <InstagramIcon className="w-4 h-4" />
+                <span>WhatsApp</span>
               </a>
-              <a
-                href={APP_CONFIG.SOCIAL_LINKS.FACEBOOK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="p-2 rounded-xl bg-white text-stone-700 hover:text-blue-600 border border-amber-200 shadow-xs"
-              >
-                <FacebookIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={APP_CONFIG.SOCIAL_LINKS.YOUTUBE}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="p-2 rounded-xl bg-white text-stone-700 hover:text-red-600 border border-amber-200 shadow-xs"
-              >
-                <YouTubeIcon className="w-4 h-4" />
-              </a>
+            </div>
+            <div className="pt-2 border-t border-stone-800 flex items-center justify-between">
+              <span className="text-[10px] text-stone-400 uppercase tracking-wider">
+                Follow Us
+              </span>
+              <div className="flex items-center gap-2">
+                <a
+                  href={APP_CONFIG.SOCIAL_LINKS.INSTAGRAM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="p-1.5 rounded-lg bg-stone-800 text-stone-300 hover:text-pink-400 hover:bg-stone-700 transition-colors"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href={APP_CONFIG.SOCIAL_LINKS.FACEBOOK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="p-1.5 rounded-lg bg-stone-800 text-stone-300 hover:text-blue-400 hover:bg-stone-700 transition-colors"
+                >
+                  <FacebookIcon className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href={APP_CONFIG.SOCIAL_LINKS.YOUTUBE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  className="p-1.5 rounded-lg bg-stone-800 text-stone-300 hover:text-red-400 hover:bg-stone-700 transition-colors"
+                >
+                  <YouTubeIcon className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

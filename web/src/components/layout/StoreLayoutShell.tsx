@@ -12,6 +12,7 @@ export const StoreLayoutShell: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
+  const isCheckoutRoute = pathname === "/checkout";
 
   useEffect(() => {
     // When navigating to admin or any new route, reset scroll to top instantly
@@ -24,6 +25,18 @@ export const StoreLayoutShell: React.FC<{ children: React.ReactNode }> = ({
       <div className="min-h-screen w-full bg-stone-950 text-stone-100 flex flex-col">
         {children}
       </div>
+    );
+  }
+
+  // On checkout, hide Footer, MobileNav, and CartDrawer so the sticky bottom buy bar is clean & unobstructed
+  if (isCheckoutRoute) {
+    return (
+      <>
+        <Header />
+        <main className="flex-1 w-full max-w-full overflow-x-hidden">
+          {children}
+        </main>
+      </>
     );
   }
 

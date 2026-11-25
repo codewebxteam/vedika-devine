@@ -71,27 +71,29 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
   // 2. Unauthenticated: Full-Screen Dedicated Admin Login Page
   if (!user) {
     return (
-      <div className="min-h-screen w-full bg-stone-950 flex items-center justify-center px-4 py-12 relative overflow-hidden text-stone-100">
-        {/* Ambient Luxury Golden Glows */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="min-h-screen w-full bg-[#0C0A09] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-12 relative overflow-hidden text-stone-100">
+        {/* Opulent Ambient Luxury Golden Glows (Fills empty screen space with warmth) */}
+        <div className="absolute top-1/4 -left-10 w-[450px] h-[450px] bg-radial from-amber-500/15 via-amber-600/5 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-10 w-[450px] h-[450px] bg-radial from-amber-600/15 via-amber-700/5 to-transparent blur-3xl pointer-events-none" />
 
-        <div className="max-w-md w-full bg-stone-900/95 rounded-3xl border border-amber-500/30 p-8 sm:p-10 text-center space-y-6 shadow-2xl backdrop-blur-md relative z-10 animate-in fade-in zoom-in-95">
+        <div className="w-full max-w-[480px] sm:max-w-lg bg-[#141210]/95 rounded-3xl border-2 border-amber-500/40 p-6 sm:p-10 text-center space-y-6 sm:space-y-7 shadow-[0_12px_60px_rgba(0,0,0,0.85)] backdrop-blur-md relative z-10 animate-in fade-in zoom-in-95">
           {/* Brand Header */}
-          <div className="flex flex-col items-center space-y-3">
-            <img
-              src="/images/logo.png"
-              alt="Vedika Divine Logo"
-              className="h-16 w-auto object-contain mx-auto drop-shadow-md"
-            />
+          <div className="flex flex-col items-center space-y-3.5">
+            <div className="p-3 rounded-2xl bg-white/5 border border-amber-500/40 shadow-inner">
+              <img
+                src="/images/logo.png"
+                alt="Vedika Divine Logo"
+                className="h-20 sm:h-22 w-auto object-contain mx-auto drop-shadow-[0_4px_16px_rgba(212,175,55,0.4)]"
+              />
+            </div>
             <div>
-              <span className="inline-block px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-amber-950/90 text-amber-400 border border-amber-800/80">
+              <span className="inline-block px-3.5 py-1 rounded-full text-[11px] uppercase font-bold tracking-widest bg-amber-950 text-amber-400 border border-amber-800">
                 Official Admin Console
               </span>
-              <h1 className="font-serif text-2xl sm:text-3xl font-bold text-white mt-2">
+              <h1 className="font-serif text-2xl sm:text-3xl font-bold text-white mt-2.5 tracking-wide">
                 Store Management
               </h1>
-              <p className="text-xs text-stone-400 mt-1.5 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-300 mt-1.5 leading-relaxed max-w-sm mx-auto">
                 Sign in with authorized administrator credentials to manage catalog, orders, and dealers.
               </p>
             </div>
@@ -99,51 +101,51 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
 
           {/* Error Alert */}
           {error && (
-            <div className="p-3.5 rounded-2xl bg-rose-950/80 border border-rose-800 text-rose-300 text-xs flex items-center gap-2.5 text-left animate-in fade-in">
-              <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+            <div className="p-3.5 rounded-2xl bg-rose-950/80 border border-rose-800 text-rose-300 text-xs sm:text-sm flex items-center gap-2.5 text-left animate-in fade-in">
+              <AlertCircle className="w-5 h-5 shrink-0 text-rose-400" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Login Form */}
-          <form onSubmit={handleAdminLogin} className="space-y-4 text-left">
+          <form onSubmit={handleAdminLogin} className="space-y-4 sm:space-y-5 text-left">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-300 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">
                 Admin Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-500" />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-500" />
                 <input
                   type="email"
                   required
                   value={adminEmail}
                   onChange={(e) => setAdminEmail(e.target.value)}
                   placeholder="admin@vedikadivine.com"
-                  className="w-full pl-10 pr-4 py-3 rounded-2xl bg-stone-950 border border-stone-800 text-stone-100 placeholder:text-stone-600 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
+                  className="w-full pl-12 pr-4 py-3.5 sm:py-4 rounded-2xl bg-stone-950 border border-stone-800 text-stone-100 placeholder:text-stone-600 text-sm sm:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-300 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-500" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-500" />
                 <input
                   type={showPassword ? "text" : "password"}
                   required
                   value={adminPassword}
                   onChange={(e) => setAdminPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full pl-10 pr-11 py-3 rounded-2xl bg-stone-950 border border-stone-800 text-stone-100 placeholder:text-stone-600 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
+                  className="w-full pl-12 pr-12 py-3.5 sm:py-4 rounded-2xl bg-stone-950 border border-stone-800 text-stone-100 placeholder:text-stone-600 text-sm sm:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-500 hover:text-stone-300"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-200 p-1"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
@@ -151,7 +153,7 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3.5 rounded-2xl bg-linear-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+              className="w-full py-4 sm:py-4.5 rounded-2xl bg-linear-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-extrabold text-sm uppercase tracking-wider shadow-xl shadow-amber-500/25 transition-all flex items-center justify-center gap-2.5 disabled:opacity-60 cursor-pointer active:scale-98"
             >
               {submitting ? (
                 <>
@@ -160,7 +162,7 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
                 </>
               ) : (
                 <>
-                  <ShieldCheck className="w-4 h-4 text-stone-950" />
+                  <ShieldCheck className="w-5 h-5 text-stone-950" />
                   <span>Sign In to Admin Console</span>
                 </>
               )}
@@ -168,12 +170,12 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
           </form>
 
           {/* Return link */}
-          <div className="pt-2 border-t border-stone-800/80">
+          <div className="pt-3 border-t border-stone-800/80">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs text-stone-400 hover:text-amber-300 transition-colors"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm text-stone-400 hover:text-amber-300 transition-colors"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="w-4 h-4" />
               <span>Return to Vedika Divine Storefront</span>
             </Link>
           </div>

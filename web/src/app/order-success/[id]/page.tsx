@@ -71,10 +71,10 @@ export default function OrderSuccessPage() {
               </div>
               <div>
                 <span className="text-[10px] text-stone-500 uppercase tracking-wider block">
-                  Payment
+                  Payment Mode
                 </span>
-                <span className="text-xs font-bold text-stone-900">
-                  {order.paymentMethod}
+                <span className="text-xs font-bold text-amber-900 bg-amber-100/80 px-2 py-0.5 rounded inline-block mt-0.5">
+                  {order.paymentMethod} (Pay upon arrival)
                 </span>
               </div>
             </div>

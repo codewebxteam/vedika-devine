@@ -15,6 +15,7 @@ import {
   Factory,
 } from "lucide-react";
 import { APP_CONFIG } from "@backend/index";
+import { SocialLinksGroup } from "@/components/common/SocialIcons";
 
 export default function AboutPage() {
   return (
@@ -116,6 +117,14 @@ export default function AboutPage() {
                   <Award className="w-4 h-4 text-amber-400 shrink-0" />
                   <span>GST Registered & Pan-India Authorized Logistics Partnered</span>
                 </div>
+              </div>
+
+              {/* Official Social Media Channels */}
+              <div className="pt-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-2">
+                  Official Channels:
+                </span>
+                <SocialLinksGroup variant="footer" showLabels={true} />
               </div>
 
               <div className="pt-4 flex flex-wrap gap-4">

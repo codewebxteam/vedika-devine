@@ -21,6 +21,7 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 import { Category, CATEGORIES, getCategories, APP_CONFIG } from "@backend/index";
+import { InstagramIcon, FacebookIcon, YouTubeIcon } from "@/components/common/SocialIcons";
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
@@ -179,7 +180,41 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Right: Actions (Search, User, Cart with Golden badge) */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2.5 sm:gap-3.5">
+            {/* Desktop Social Channels */}
+            <div className="hidden lg:flex items-center gap-1.5 pr-2 border-r border-amber-200/70">
+              <a
+                href={APP_CONFIG.SOCIAL_LINKS.INSTAGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Follow Vedika Divine on Instagram (@vedikadivine_official)"
+                aria-label="Instagram"
+                className="p-1.5 rounded-full text-stone-600 hover:text-pink-600 hover:bg-pink-50 transition-all hover:scale-110"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={APP_CONFIG.SOCIAL_LINKS.FACEBOOK}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Follow Vedika Divine on Facebook"
+                aria-label="Facebook"
+                className="p-1.5 rounded-full text-stone-600 hover:text-blue-600 hover:bg-blue-50 transition-all hover:scale-110"
+              >
+                <FacebookIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={APP_CONFIG.SOCIAL_LINKS.YOUTUBE}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Subscribe to Vedika Divine on YouTube (@vedikadivine_official)"
+                aria-label="YouTube"
+                className="p-1.5 rounded-full text-stone-600 hover:text-red-600 hover:bg-red-50 transition-all hover:scale-110"
+              >
+                <YouTubeIcon className="w-4 h-4" />
+              </a>
+            </div>
+
             {/* Search Icon / Toggle */}
             <div className="relative">
               <button
@@ -488,6 +523,42 @@ export const Header: React.FC = () => {
               <Crown className="w-4 h-4 text-amber-600" />
               <span>Admin Management</span>
             </Link>
+          </div>
+
+          {/* Social Channels in Mobile Menu */}
+          <div className="pt-3 border-t border-amber-200/60 flex items-center justify-between">
+            <span className="text-[11px] font-bold text-amber-900 uppercase tracking-wider">
+              Follow Us:
+            </span>
+            <div className="flex items-center gap-2">
+              <a
+                href={APP_CONFIG.SOCIAL_LINKS.INSTAGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="p-2 rounded-xl bg-white text-stone-700 hover:text-pink-600 border border-amber-200 shadow-xs"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={APP_CONFIG.SOCIAL_LINKS.FACEBOOK}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="p-2 rounded-xl bg-white text-stone-700 hover:text-blue-600 border border-amber-200 shadow-xs"
+              >
+                <FacebookIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={APP_CONFIG.SOCIAL_LINKS.YOUTUBE}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="p-2 rounded-xl bg-white text-stone-700 hover:text-red-600 border border-amber-200 shadow-xs"
+              >
+                <YouTubeIcon className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       )}

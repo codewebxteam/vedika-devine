@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Flame, PhoneCall, Mail, Gift, Globe } from "lucide-react";
 import { APP_CONFIG } from "@backend/index";
+import { SocialLinksGroup } from "@/components/common/SocialIcons";
 
 export const TopAnnouncement: React.FC = () => {
   return (
@@ -15,7 +16,10 @@ export const TopAnnouncement: React.FC = () => {
             ✨ <strong>M/S RMPG Vedika Divine:</strong> Handcrafted 100% Pure Soy Candles | Free Delivery above {APP_CONFIG.CURRENCY}{APP_CONFIG.FREE_SHIPPING_THRESHOLD}
           </span>
         </div>
-        <div className="flex items-center gap-4 text-[11px] text-amber-200">
+        <div className="flex items-center gap-3 text-[11px] text-amber-200">
+          <div className="hidden sm:flex items-center gap-1.5 pr-2 border-r border-stone-700">
+            <SocialLinksGroup variant="header" />
+          </div>
           <a
             href={`mailto:${APP_CONFIG.SUPPORT_EMAIL}`}
             className="hidden lg:flex items-center gap-1 hover:text-white transition-colors"

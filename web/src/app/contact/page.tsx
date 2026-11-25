@@ -14,6 +14,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { APP_CONFIG } from "@backend/index";
+import { SocialLinksGroup } from "@/components/common/SocialIcons";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -110,6 +111,14 @@ export default function ContactPage() {
                 Direct dispatch via Delhivery, Blue Dart, and Indian Speed Post with tamper-proof fragile box packaging.
               </p>
             </div>
+
+            {/* Official Social Media Channels */}
+            <div className="pt-4 border-t border-stone-800 space-y-2.5">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-amber-400 block">
+                Official Social Channels
+              </span>
+              <SocialLinksGroup variant="footer" showLabels={true} />
+            </div>
           </div>
 
           {/* Contact Inquiry Form (White Card with Gold Touches) */}
@@ -203,6 +212,22 @@ export default function ContactPage() {
               </form>
             )}
           </div>
+        </div>
+
+        {/* 3. Official Social Channels Section */}
+        <div className="mt-14 pt-12 border-t border-amber-200/80 space-y-6">
+          <div className="text-center space-y-1.5 max-w-lg mx-auto">
+            <span className="text-[10px] uppercase font-bold tracking-widest text-amber-700 block">
+              Digital Community
+            </span>
+            <h3 className="font-serif text-2xl font-bold text-stone-900">
+              Connect With Us Online
+            </h3>
+            <p className="text-xs text-stone-500">
+              Watch live candle making reels, spiritual inspiration, and new collection launches on our verified channels.
+            </p>
+          </div>
+          <SocialLinksGroup variant="contact" />
         </div>
       </div>
     </div>

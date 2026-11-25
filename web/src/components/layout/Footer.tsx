@@ -18,6 +18,7 @@ import {
   User,
 } from "lucide-react";
 import { Category, CATEGORIES, getCategories, APP_CONFIG } from "@backend/index";
+import { SocialLinksGroup } from "@/components/common/SocialIcons";
 
 export const Footer: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([...CATEGORIES]);
@@ -128,6 +129,14 @@ export const Footer: React.FC = () => {
             <p className="text-xs text-stone-300 leading-relaxed">
               Handcrafting luxury aromatherapy soy candles, glass jars, festival gift hampers, and sacred temple akhand diyas. Infused with organic therapeutic essential oils.
             </p>
+
+            {/* Social Media Channels */}
+            <div className="pt-2 space-y-2">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-amber-400 block">
+                Connect With Us
+              </span>
+              <SocialLinksGroup variant="footer" showLabels={true} />
+            </div>
           </div>
 
           {/* Column 2: Collections (Spans 2 columns) */}
@@ -310,11 +319,15 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* 4. Bottom Copyright & Kushinagar Heritage Strip */}
-        <div className="pt-6 border-t border-amber-900/40 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-stone-400 text-center sm:text-left">
+        <div className="pt-6 border-t border-amber-900/40 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-400 text-center sm:text-left">
           <p suppressHydrationWarning>
             © {mounted ? new Date().getFullYear() : "2026"}{" "}
             <strong className="text-amber-300 font-semibold">{APP_CONFIG.COMPANY_LEGAL_NAME}</strong>. All Rights Reserved.
           </p>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] text-stone-400 font-medium">Follow Us:</span>
+            <SocialLinksGroup variant="header" />
+          </div>
           <p className="text-stone-300 text-xs flex items-center gap-1.5 font-medium">
             <span>Handcrafted with devotion in</span>
             <span className="text-amber-300 font-bold">Kushinagar, Uttar Pradesh, India</span>

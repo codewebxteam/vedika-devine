@@ -91,4 +91,9 @@ export const APP_CONFIG = {
   WEBSITE: "www.vedikadivine.com",
   REGISTERED_ADDRESS: "TURKPATTI BAZAR, POST: MAHUAWA BUZURG, DISTRICT: KUSHINAGAR, UTTAR PRADESH – 274302, INDIA",
   MANUFACTURING_UNIT: "Turkpatti Bazar, Post: Mahuawa Buzurg, Kushinagar, Uttar Pradesh – 274302, India",
+  SOCIAL_LINKS: {
+    INSTAGRAM: "https://www.instagram.com/vedikadivine_official?fqnt=MXJtcWdnY2lrNHgx",
+    FACEBOOK: "https://www.facebook.com/share/184fJnvzTz/",
+    YOUTUBE: "https://youtube.com/@vedikadivine_official?si=Oi8kkRScgLTEQnWS",
+  },
 };

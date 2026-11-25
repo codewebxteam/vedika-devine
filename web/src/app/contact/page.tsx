@@ -12,20 +12,74 @@ import {
   Clock,
   Sparkles,
   MessageSquare,
+  MessageCircle,
+  ExternalLink,
 } from "lucide-react";
-import { APP_CONFIG } from "@backend/index";
+import { APP_CONFIG, submitWholesaleInquiry } from "@backend/index";
 import { SocialLinksGroup } from "@/components/common/SocialIcons";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [subject, setSubject] = useState("Candle Order & Product Inquiry");
   const [message, setMessage] = useState("");
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+
+    const targetPhone = "918874205655";
+    const dateFormatted = new Date().toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+
+    // Beautifully formatted WhatsApp message with clean markdown & emojis
+    const wpMessage =
+`✨ *NEW INQUIRY — VEDIKA DIVINE LUXURY CANDLES* ✨
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 *Customer Name:* ${name.trim()}
+📞 *Phone / WhatsApp:* ${phone.trim() || "Not provided"}
+✉️ *Email Address:* ${email.trim() || "Not provided"}
+🏷️ *Topic / Subject:* ${subject}
+
+💬 *Message / Requirement:*
+"${message.trim()}"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌐 *Source:* www.vedikadivine.com/contact
+🕒 *Time:* ${dateFormatted}
+🏭 *Support:* Kushinagar Central Factory, Uttar Pradesh`;
+
+    const url = `https://wa.me/${targetPhone}?text=${encodeURIComponent(wpMessage)}`;
+    setWhatsappUrl(url);
+
+    // Save as background inquiry in Firestore for Admin console records
+    try {
+      await submitWholesaleInquiry({
+        businessName: name.trim(),
+        contactPerson: name.trim(),
+        phone: phone.trim(),
+        email: email.trim(),
+        city: "Contact Web Form",
+        estimatedQuantity: subject,
+        candleTypesNeeded: [subject],
+        message: message.trim(),
+      });
+    } catch (err) {
+      console.warn("Background inquiry logging error:", err);
+    }
+
+    setSubmitting(false);
     setSubmitted(true);
+
+    // Open WhatsApp in a new tab/window immediately
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank");
+    }
   };
 
   return (
@@ -121,93 +175,155 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Contact Inquiry Form (White Card with Gold Touches) */}
+          {/* Contact Inquiry Form (White Card with WhatsApp Direct Integration) */}
           <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-amber-200 shadow-sm space-y-6">
-            <div>
+            <div className="border-b border-stone-100 pb-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-[11px] font-bold uppercase tracking-wider mb-2">
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Instant WhatsApp Support Desk</span>
+              </div>
               <h2 className="font-serif text-2xl font-bold text-black">
-                Send Us a Message
+                Send Us an Inquiry
               </h2>
-              <p className="text-xs text-stone-500 mt-1">
-                Fill in your contact details below and our team will get back to you within 24 hours.
+              <p className="text-xs text-stone-500 mt-1 leading-relaxed">
+                Niche apni details bharein — click karte hi aapka inquiry message direct hamare official WhatsApp (<strong className="text-stone-800 font-mono">+91 8874205655</strong>) par formatted ready ho kar open ho jayega.
               </p>
             </div>
 
             {submitted ? (
-              <div className="p-8 text-center bg-amber-50/80 rounded-2xl border border-amber-200 space-y-3">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto font-bold">
-                  <CheckCircle2 className="w-6 h-6" />
+              <div className="p-8 text-center bg-emerald-50/80 rounded-3xl border-2 border-emerald-500/40 space-y-4 animate-in fade-in zoom-in-95 shadow-lg">
+                <div className="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto font-bold shadow-inner">
+                  <CheckCircle2 className="w-9 h-9 text-emerald-600" />
                 </div>
-                <h3 className="font-serif font-bold text-lg text-black">
-                  Message Sent Successfully!
-                </h3>
-                <p className="text-xs text-stone-600 max-w-sm mx-auto">
-                  Thank you for reaching out to Vedika Divine Home Industries. An executive from Kushinagar will respond shortly.
-                </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="px-6 py-2 rounded-full bg-black text-white text-xs font-semibold cursor-pointer"
-                >
-                  Send Another Inquiry
-                </button>
+
+                <div className="space-y-1">
+                  <h3 className="font-serif font-bold text-xl text-stone-900">
+                    🎉 WhatsApp Message Ready!
+                  </h3>
+                  <p className="text-xs text-stone-600 max-w-md mx-auto leading-relaxed">
+                    Aapka formatted inquiry message WhatsApp par generate ho chuka hai. Agar WhatsApp automatically open nahi hua, to niche diye button par click karein:
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white border border-emerald-200 text-xs text-stone-700 max-w-md mx-auto text-left font-mono whitespace-pre-line bg-stone-50/80 shadow-xs">
+                  <span className="text-[10px] uppercase font-bold text-emerald-700 block tracking-wider mb-1 font-sans">
+                    Message Preview:
+                  </span>
+                  &quot;{message.trim()}&quot;
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Open WhatsApp Chat Directly</span>
+                  </a>
+
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setMessage("");
+                    }}
+                    className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-stone-900 hover:bg-black text-white text-xs font-semibold cursor-pointer transition-colors"
+                  >
+                    Send Another Inquiry
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 text-xs">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-semibold text-stone-700 mb-1">Your Name</label>
+                    <label className="block font-bold text-stone-800 mb-1">
+                      Your Full Name *
+                    </label>
                     <input
                       type="text"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. Anjali Verma"
-                      className="w-full p-3.5 rounded-xl border border-amber-300 text-black focus:outline-hidden focus:ring-2 focus:ring-amber-500/20"
+                      placeholder="e.g. Ramesh Kumar"
+                      className="w-full p-3.5 rounded-xl border border-stone-300 text-black focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500/20 bg-stone-50/50"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-stone-700 mb-1">Phone Number</label>
+                    <label className="block font-bold text-stone-800 mb-1">
+                      WhatsApp / Phone Number *
+                    </label>
                     <input
                       type="tel"
+                      required
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="10-digit mobile"
-                      className="w-full p-3.5 rounded-xl border border-amber-300 text-black focus:outline-hidden focus:ring-2 focus:ring-amber-500/20"
+                      placeholder="10-digit mobile number"
+                      className="w-full p-3.5 rounded-xl border border-stone-300 text-black focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500/20 bg-stone-50/50 font-mono"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block font-semibold text-stone-700 mb-1">Email Address</label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your.email@example.com"
-                    className="w-full p-3.5 rounded-xl border border-amber-300 text-black focus:outline-hidden focus:ring-2 focus:ring-amber-500/20"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-bold text-stone-800 mb-1">
+                      Email Address (Optional)
+                    </label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your.email@example.com"
+                      className="w-full p-3.5 rounded-xl border border-stone-300 text-black focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500/20 bg-stone-50/50"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-stone-800 mb-1">
+                      Inquiry Topic / Subject
+                    </label>
+                    <select
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
+                      className="w-full p-3.5 rounded-xl border border-stone-300 text-black focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500/20 bg-stone-50/50"
+                    >
+                      <option value="Candle Order & Product Inquiry">Candle Order & Product Inquiry</option>
+                      <option value="Wholesale Dealership / Distributor Inquiry">Wholesale Dealership / Distributor</option>
+                      <option value="Corporate Gifting & Custom Fragrance">Corporate Gifting & Custom Fragrance</option>
+                      <option value="Bulk Wedding & Event Favors">Bulk Wedding & Event Favors</option>
+                      <option value="General Support Question">General Support Question</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-stone-700 mb-1">Your Message / Inquiry</label>
+                  <label className="block font-bold text-stone-800 mb-1">
+                    Your Message / Requirement *
+                  </label>
                   <textarea
                     required
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Tell us how we can help with your order, custom gifting, or dealership..."
-                    className="w-full p-3.5 rounded-xl border border-amber-300 text-black focus:outline-hidden focus:ring-2 focus:ring-amber-500/20"
+                    placeholder="Tell us what you are looking for (e.g. need 50 pieces scented candles for an upcoming event, or delivery timeline query)..."
+                    className="w-full p-3.5 rounded-xl border border-stone-300 text-black focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500/20 bg-stone-50/50"
                   />
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 space-y-2.5">
                   <button
                     type="submit"
-                    className="px-8 py-3.5 rounded-full bg-black hover:bg-stone-900 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition-all hover:scale-102 flex items-center justify-center gap-2 cursor-pointer border border-black"
+                    disabled={submitting}
+                    className="w-full py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-xl shadow-emerald-950/20 hover:shadow-2xl transition-all flex items-center justify-center gap-2 cursor-pointer border border-emerald-500 active:scale-98 disabled:opacity-50"
                   >
-                    <Send className="w-4 h-4 text-amber-400" />
-                    <span>Submit Inquiry</span>
+                    <MessageCircle className="w-5 h-5 fill-white text-emerald-600" />
+                    <span>Send Inquiry on WhatsApp (व्हाट्सएप पर भेजें)</span>
                   </button>
+
+                  <p className="text-center text-[11px] text-stone-500 flex items-center justify-center gap-1.5">
+                    <span>⚡ Instant Reply:</span>
+                    <span>Click karte hi aapka message direct support number (+91 8874205655) par WhatsApp me open ho jayega.</span>
+                  </p>
                 </div>
               </form>
             )}

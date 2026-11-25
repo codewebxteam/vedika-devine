@@ -14,7 +14,6 @@ import { db } from "../config/firebase";
 import { COLLECTIONS, ORDER_STATUS } from "../config/constants";
 import { Order, OrderStatus } from "../types/order";
 import { SavedShop } from "../types/user";
-import { SavedShop } from "../types/user";
 import { generateOrderNumber } from "../utils/formatters";
 
 export const createOrder = async (

@@ -16,6 +16,9 @@ import {
   Calendar,
   ShieldAlert,
   Flame,
+  Store,
+  Percent,
+  Coins,
 } from "lucide-react";
 import {
   Order,
@@ -24,6 +27,7 @@ import {
   formatCurrency,
   updateOrderStatus,
   updateOrderTracking,
+  updateOrderCommissionStatus,
   APP_CONFIG,
 } from "@backend/index";
 
@@ -52,6 +56,26 @@ export const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
   const [estimatedDelivery, setEstimatedDelivery] = useState(order?.estimatedDelivery || "");
   const [isSavingTracking, setIsSavingTracking] = useState(false);
   const [trackingMsg, setTrackingMsg] = useState<string | null>(null);
+
+  // Commission State for Distributor Assisted Orders
+  const [commissionStatus, setCommissionStatus] = useState<
+    "Pending" | "Approved" | "Paid" | "Cancelled"
+  >(order?.commissionStatus || "Pending");
+  const [commissionMsg, setCommissionMsg] = useState<string | null>(null);
+
+  const handleCommissionStatusChange = async (
+    newStatus: "Pending" | "Approved" | "Paid" | "Cancelled"
+  ) => {
+    if (!order || !order.id) return;
+    try {
+      await updateOrderCommissionStatus(order.id, newStatus);
+      setCommissionStatus(newStatus);
+      setCommissionMsg(`Distributor commission status updated to "${newStatus}"!`);
+      setTimeout(() => setCommissionMsg(null), 3500);
+    } catch (err: any) {
+      alert(`Commission update failed: ${err.message}`);
+    }
+  };
 
   if (!order) return null;
 
@@ -391,6 +415,108 @@ export const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
               </button>
             </div>
           </div>
+
+          {/* Distributor Assisted Order & Shop Destination (If applicable) */}
+          {order.orderType === "distributor_assisted" && (
+            <div className="p-5 rounded-2xl bg-amber-950/20 border-2 border-amber-500/40 space-y-3.5 shadow-lg shadow-black/40">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-amber-900/40">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400">
+                    <Store className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-serif font-bold text-white text-sm">
+                      Distributor Retail Assisted Order (Field Dukan Booking)
+                    </h4>
+                    <p className="text-[10px] text-amber-300">
+                      Booked by authorized field partner • Stock dispatch destination confirmed
+                    </p>
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-amber-950 text-amber-300 border border-amber-750">
+                  🤝 Distributor Order
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                {/* Target Retail Shop Info */}
+                <div className="space-y-1.5 p-3.5 rounded-xl bg-stone-950/80 border border-stone-800">
+                  <p className="text-[10px] uppercase font-bold text-amber-400 tracking-wider flex items-center gap-1">
+                    <Store className="w-3 h-3" />
+                    <span>Target Retail Shop (Dispatch To)</span>
+                  </p>
+                  <p className="font-serif font-bold text-white text-base">
+                    {order.shopName || order.shippingAddress?.fullName}
+                  </p>
+                  <p className="text-stone-300 text-xs">
+                    Shop Owner: <strong className="text-white">{order.shopOwnerName || order.shippingAddress?.fullName}</strong>
+                  </p>
+                  <p className="text-stone-400 text-xs flex items-center gap-1.5">
+                    <Phone className="w-3.5 h-3.5 text-stone-500" />
+                    <span>Phone: <strong className="text-stone-200">{order.shopPhone || order.shippingAddress?.phone}</strong></span>
+                  </p>
+                  <p className="text-stone-400 text-xs leading-relaxed pt-1 border-t border-stone-800/80">
+                    {order.shippingAddress?.street}, {order.shippingAddress?.city}, {order.shippingAddress?.state} - <span className="font-mono text-amber-300">{order.shippingAddress?.pincode}</span>
+                  </p>
+                </div>
+
+                {/* Booking Distributor & Commission */}
+                <div className="space-y-2 p-3.5 rounded-xl bg-stone-950/80 border border-stone-800 flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <p className="text-[10px] uppercase font-bold text-amber-400 tracking-wider flex items-center gap-1">
+                      <Percent className="w-3 h-3" />
+                      <span>Booking Distributor Details</span>
+                    </p>
+                    <p className="font-serif font-bold text-white text-sm">
+                      {order.bookedByPartnerBusiness || order.bookedByPartnerName}
+                    </p>
+                    <p className="text-stone-400 text-[11px]">
+                      Partner ID: <span className="font-mono text-stone-300">{order.bookedByPartnerId}</span>
+                    </p>
+                    {order.bookedByPartnerPhone && (
+                      <p className="text-stone-400 text-xs flex items-center gap-1.5">
+                        <Phone className="w-3.5 h-3.5 text-stone-500" />
+                        <span>{order.bookedByPartnerPhone}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="pt-2.5 border-t border-stone-800/80 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <span className="text-[10px] text-stone-400 block font-semibold">
+                        Commission ({order.partnerCommissionRate || 10}%)
+                      </span>
+                      <span className="font-serif font-bold text-amber-400 text-base">
+                        ₹{order.partnerCommissionAmount || 0}
+                      </span>
+                    </div>
+
+                    <div className="text-right">
+                      <label className="text-[10px] text-stone-400 block font-semibold mb-1">
+                        Commission Payout
+                      </label>
+                      <select
+                        value={commissionStatus}
+                        onChange={(e) => handleCommissionStatusChange(e.target.value as any)}
+                        className="px-2.5 py-1 rounded-lg bg-stone-900 border border-stone-700 text-xs font-bold text-amber-300 focus:outline-hidden cursor-pointer"
+                      >
+                        <option value="Pending">Pending Approval</option>
+                        <option value="Approved">Approved (Ready to Pay)</option>
+                        <option value="Paid">Paid to Distributor</option>
+                        <option value="Cancelled">Cancelled</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {commissionMsg && (
+                <p className="text-xs text-emerald-400 font-semibold">
+                  ✓ {commissionMsg}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Customer & Shipping Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

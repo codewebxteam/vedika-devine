@@ -20,7 +20,10 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { APP_CONFIG } from "@backend/index";
 
-export const AdminSidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate }) => {
+export const AdminSidebar: React.FC<{
+  onNavigate?: () => void;
+  hideHeader?: boolean;
+}> = ({ onNavigate, hideHeader = false }) => {
   const pathname = usePathname();
   const { user, profile, logout } = useAuth();
 
@@ -74,10 +77,10 @@ export const AdminSidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate
   ];
 
   return (
-    <aside className="w-64 bg-stone-900 text-stone-300 flex flex-col justify-between border-r border-stone-800 min-h-screen p-5 shrink-0">
-      <div className="space-y-6">
-        {/* Brand identity */}
-        <div className="flex items-center gap-3 pb-5 border-b border-stone-800">
+    <aside className="w-full md:w-64 bg-stone-900 text-stone-300 flex flex-col h-full border-r border-stone-800 shrink-0 select-none">
+      {/* Brand identity (Visible on Desktop, hidden in mobile drawer to avoid duplicate header) */}
+      {!hideHeader && (
+        <div className="flex items-center gap-3 p-5 pb-4 border-b border-stone-800 shrink-0">
           <img
             src="/images/logo.png"
             alt="Vedika Divine Logo"
@@ -88,13 +91,15 @@ export const AdminSidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate
               VEDIKA ADMIN
             </h2>
             <p className="text-[10px] text-amber-400 font-semibold tracking-wider uppercase">
-              RMPG Home Industries
+              RMPG Industries
             </p>
           </div>
         </div>
+      )}
 
-        {/* Navigation */}
-        <nav className="space-y-1.5">
+      {/* Navigation - Scrollable middle area */}
+      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1.5 scrollbar-thin scrollbar-thumb-stone-800">
+        <nav className="space-y-1.5 pb-2">
           {links.map((link) => {
             const isActive = link.exact
               ? pathname === link.href
@@ -105,10 +110,11 @@ export const AdminSidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate
                 key={link.href}
                 href={link.href}
                 onClick={() => onNavigate?.()}
-                className={`flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition-all ${isActive
-                  ? "bg-amber-600 text-white shadow-md shadow-amber-900/40"
-                  : "text-stone-400 hover:text-white hover:bg-stone-800/60"
-                  }`}
+                className={`flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition-all ${
+                  isActive
+                    ? "bg-amber-600 text-white shadow-md shadow-amber-900/40"
+                    : "text-stone-400 hover:text-white hover:bg-stone-800/60"
+                }`}
               >
                 {link.icon}
                 <span>{link.name}</span>
@@ -118,8 +124,8 @@ export const AdminSidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate
         </nav>
       </div>
 
-      {/* Admin User Card & Return to Store */}
-      <div className="pt-6 border-t border-stone-800 space-y-3">
+      {/* Admin User Card & Return to Store - Fixed pinned at bottom */}
+      <div className="p-4 border-t border-stone-800 space-y-2.5 shrink-0 bg-stone-900/95 pb-6 sm:pb-5">
         <Link
           href="/"
           className="flex items-center justify-between p-2.5 rounded-xl bg-stone-800/60 hover:bg-stone-800 text-stone-300 hover:text-white text-xs font-medium transition-colors"
@@ -132,7 +138,7 @@ export const AdminSidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate
         </Link>
 
         {user && (
-          <div className="p-3 rounded-2xl bg-stone-950 border border-stone-800 flex items-center justify-between gap-2">
+          <div className="p-3 rounded-2xl bg-stone-950 border border-stone-800 flex items-center justify-between gap-2 shadow-inner">
             <div className="min-w-0">
               <p className="text-xs font-bold text-white truncate flex items-center gap-1.5">
                 <Crown className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
@@ -142,7 +148,7 @@ export const AdminSidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate
             </div>
             <button
               onClick={logout}
-              className="p-1.5 rounded-lg text-stone-500 hover:text-rose-400 hover:bg-stone-800 transition-colors"
+              className="p-1.5 rounded-lg text-stone-500 hover:text-rose-400 hover:bg-stone-800 transition-colors cursor-pointer"
               title="Sign Out"
             >
               <LogOut className="w-4 h-4" />

@@ -7,6 +7,7 @@ export const COLLECTIONS = {
   WISHLISTS: "wishlists",
   CARTS: "carts",
   INQUIRIES: "inquiries",
+  DEALER_SHOPS: "dealer_shops",
 } as const;
 
 export const CATEGORIES = [

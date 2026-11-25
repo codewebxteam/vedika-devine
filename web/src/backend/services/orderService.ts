@@ -13,6 +13,8 @@ import {
 import { db } from "../config/firebase";
 import { COLLECTIONS, ORDER_STATUS } from "../config/constants";
 import { Order, OrderStatus } from "../types/order";
+import { SavedShop } from "../types/user";
+import { SavedShop } from "../types/user";
 import { generateOrderNumber } from "../utils/formatters";
 
 export const createOrder = async (
@@ -200,4 +202,242 @@ export const trackOrderByOrderNumber = async (
 export const deleteOrder = async (orderId: string): Promise<void> => {
   const docRef = doc(db, COLLECTIONS.ORDERS, orderId);
   await deleteDoc(docRef);
+};
+
+export interface CreateDistributorAssistedOrderParams {
+  distributorId: string;
+  distributorName: string;
+  distributorBusiness?: string;
+  distributorPhone?: string;
+  shopName: string;
+  shopOwnerName: string;
+  shopPhone: string;
+  shopAddress: {
+    fullName: string;
+    phone: string;
+    street: string;
+    city: string;
+    state: string;
+    pincode: string;
+  };
+  items: Order["items"];
+  subtotal: number;
+  shippingFee: number;
+  discount: number;
+  total: number;
+  paymentMethod: Order["paymentMethod"];
+  commissionRate: number; // e.g. 10
+  distributorNotes?: string;
+}
+
+export const createDistributorAssistedOrder = async (
+  params: CreateDistributorAssistedOrderParams
+): Promise<Order> => {
+  const docRef = doc(collection(db, COLLECTIONS.ORDERS));
+  const orderNumber = generateOrderNumber();
+  const createdAt = Date.now();
+  const status: OrderStatus = ORDER_STATUS.CONFIRMED;
+
+  const deliveryDate = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000);
+  const estimatedDelivery = deliveryDate.toLocaleDateString("en-IN", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+
+  // Calculate commission: (subtotal * commissionRate) / 100
+  const partnerCommissionAmount = Math.round(
+    (params.subtotal * (params.commissionRate || 10)) / 100
+  );
+
+  const fullOrder: Order = {
+    id: docRef.id,
+    orderNumber,
+    userId: params.distributorId,
+    userEmail: `shop.${params.shopPhone.replace(/[^0-9]/g, "")}@vedikadivine.retail`,
+    items: params.items,
+    subtotal: params.subtotal,
+    shippingFee: params.shippingFee,
+    discount: params.discount,
+    total: params.total,
+    shippingAddress: params.shopAddress,
+    paymentMethod: params.paymentMethod,
+    paymentStatus: params.paymentMethod === "Cash on Delivery" ? "Pending" : "Paid",
+    status,
+    createdAt,
+    estimatedDelivery,
+    // Distributor Retail POS Attribution
+    orderType: "distributor_assisted",
+    bookedByPartnerId: params.distributorId,
+    bookedByPartnerName: params.distributorName,
+    bookedByPartnerBusiness: params.distributorBusiness || params.distributorName,
+    bookedByPartnerPhone: params.distributorPhone,
+    shopName: params.shopName,
+    shopOwnerName: params.shopOwnerName,
+    shopPhone: params.shopPhone,
+    partnerCommissionRate: params.commissionRate || 10,
+    partnerCommissionAmount,
+    commissionStatus: "Pending",
+    distributorNotes: params.distributorNotes,
+  };
+
+  await setDoc(docRef, fullOrder);
+
+  // Automatically upsert shop to distributor's saved directory with last ordered items
+  try {
+    await upsertDistributorSavedShop({
+      distributorId: params.distributorId,
+      shopName: params.shopName,
+      shopOwnerName: params.shopOwnerName,
+      shopPhone: params.shopPhone,
+      street: params.shopAddress.street,
+      city: params.shopAddress.city,
+      state: params.shopAddress.state,
+      pincode: params.shopAddress.pincode,
+      notes: params.distributorNotes,
+      lastOrderId: docRef.id,
+      lastOrderNumber: orderNumber,
+      lastOrderDate: createdAt,
+      lastOrderItems: params.items,
+      orderTotal: params.total,
+    });
+  } catch (err) {
+    console.warn("Auto-saving shop failed:", err);
+  }
+
+  return fullOrder;
+};
+
+export const upsertDistributorSavedShop = async (
+  shopData: {
+    distributorId: string;
+    shopName: string;
+    shopOwnerName: string;
+    shopPhone: string;
+    street: string;
+    city: string;
+    state?: string;
+    pincode: string;
+    notes?: string;
+    lastOrderId?: string;
+    lastOrderNumber?: string;
+    lastOrderDate?: number;
+    lastOrderItems?: any[];
+    orderTotal?: number;
+  }
+): Promise<SavedShop> => {
+  try {
+    const shopsRef = collection(db, COLLECTIONS.DEALER_SHOPS);
+    const q = query(
+      shopsRef,
+      where("distributorId", "==", shopData.distributorId)
+    );
+    const snap = await getDocs(q);
+
+    let existingDocId: string | null = null;
+    let existingData: SavedShop | null = null;
+
+    const cleanInputPhone = shopData.shopPhone.replace(/[^0-9]/g, "");
+    for (const d of snap.docs) {
+      const data = d.data() as SavedShop;
+      const cleanPhone = (data.shopPhone || "").replace(/[^0-9]/g, "");
+      if (
+        (cleanPhone && cleanPhone === cleanInputPhone) ||
+        data.shopName.trim().toLowerCase() === shopData.shopName.trim().toLowerCase()
+      ) {
+        existingDocId = d.id;
+        existingData = data;
+        break;
+      }
+    }
+
+    const now = Date.now();
+    const targetDocRef = existingDocId
+      ? doc(db, COLLECTIONS.DEALER_SHOPS, existingDocId)
+      : doc(collection(db, COLLECTIONS.DEALER_SHOPS));
+
+    const totalOrdersCount =
+      (existingData?.totalOrdersCount || 0) + (shopData.orderTotal !== undefined ? 1 : 0);
+    const totalSpent = (existingData?.totalSpent || 0) + (shopData.orderTotal || 0);
+
+    const savedShop: SavedShop = {
+      id: targetDocRef.id,
+      distributorId: shopData.distributorId,
+      shopName: shopData.shopName.trim(),
+      shopOwnerName: shopOwnerNameClean(shopData.shopOwnerName),
+      shopPhone: shopData.shopPhone.trim(),
+      street: shopData.street.trim(),
+      city: shopData.city.trim(),
+      state: shopData.state || "Uttar Pradesh",
+      pincode: shopData.pincode.trim(),
+      notes: shopData.notes || existingData?.notes || "",
+      totalOrdersCount,
+      totalSpent,
+      lastOrderId: shopData.lastOrderId || existingData?.lastOrderId,
+      lastOrderNumber: shopData.lastOrderNumber || existingData?.lastOrderNumber,
+      lastOrderDate: shopData.lastOrderDate || existingData?.lastOrderDate || now,
+      lastOrderItems: shopData.lastOrderItems || existingData?.lastOrderItems || [],
+      createdAt: existingData?.createdAt || now,
+      updatedAt: now,
+    };
+
+    await setDoc(targetDocRef, savedShop, { merge: true });
+    return savedShop;
+  } catch (err) {
+    console.warn("Could not save distributor shop:", err);
+    throw err;
+  }
+};
+
+const shopOwnerNameClean = (name?: string) => name?.trim() || "Shopkeeper";
+
+export const getDistributorSavedShops = async (
+  distributorId: string
+): Promise<SavedShop[]> => {
+  try {
+    const shopsRef = collection(db, COLLECTIONS.DEALER_SHOPS);
+    const q = query(shopsRef, where("distributorId", "==", distributorId));
+    const snap = await getDocs(q);
+    const list: SavedShop[] = [];
+    snap.forEach((d) => {
+      list.push({ id: d.id, ...d.data() } as SavedShop);
+    });
+    return list.sort((a, b) => Number(b.updatedAt || 0) - Number(a.updatedAt || 0));
+  } catch (err) {
+    console.warn("Error fetching distributor saved shops:", err);
+    return [];
+  }
+};
+
+export const deleteDistributorSavedShop = async (shopId: string): Promise<void> => {
+  const docRef = doc(db, COLLECTIONS.DEALER_SHOPS, shopId);
+  await deleteDoc(docRef);
+};
+
+export const getDistributorAssistedOrders = async (
+  distributorId: string
+): Promise<Order[]> => {
+  try {
+    const ordersRef = collection(db, COLLECTIONS.ORDERS);
+    const q = query(ordersRef, where("bookedByPartnerId", "==", distributorId));
+    const querySnapshot = await getDocs(q);
+
+    const orders: Order[] = [];
+    querySnapshot.forEach((docSnap) => {
+      orders.push({ id: docSnap.id, ...docSnap.data() } as Order);
+    });
+
+    return orders.sort((a, b) => Number(b.createdAt) - Number(a.createdAt));
+  } catch (error) {
+    console.warn("Error fetching distributor assisted orders:", error);
+    return [];
+  }
+};
+
+export const updateOrderCommissionStatus = async (
+  orderId: string,
+  commissionStatus: "Pending" | "Approved" | "Paid" | "Cancelled"
+): Promise<void> => {
+  const docRef = doc(db, COLLECTIONS.ORDERS, orderId);
+  await updateDoc(docRef, { commissionStatus });
 };

@@ -8,24 +8,46 @@ import {
   onAuthStateChanged,
   User as FirebaseUser,
 } from "firebase/auth";
-import { doc, getDoc, setDoc, updateDoc, collection, getDocs } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs } from "firebase/firestore";
 import { auth, db, googleProvider } from "../config/firebase";
 import { COLLECTIONS } from "../config/constants";
 import { UserProfile, Address, UserRole, DealerInfo } from "../types/user";
 
 /**
+ * Known store administrator email addresses that automatically receive admin privileges.
+ */
+const KNOWN_ADMIN_EMAILS = [
+  "amitsrodz@gmail.com",
+  "vedikadivine@gmail.com",
+  "admin@vedikadivine.com",
+];
+
+const isAuthorizedAdminEmail = (email?: string | null): boolean => {
+  if (!email) return false;
+  return KNOWN_ADMIN_EMAILS.includes(email.trim().toLowerCase());
+};
+
+/**
  * Ensures a document exists in the Firestore 'users' collection for the user.
- * Stores 'role: customer' by default. You can change this to 'admin' in Firestore Console.
+ * Stores 'role: customer' by default, or 'role: admin' for authorized admin emails.
  */
 export const ensureUserDocumentInFirestore = async (
   firebaseUser: FirebaseUser,
   customDisplayName?: string
 ): Promise<UserProfile> => {
   const docRef = doc(db, COLLECTIONS.USERS, firebaseUser.uid);
+  const isAdminEmail = isAuthorizedAdminEmail(firebaseUser.email);
+
   try {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      return docSnap.data() as UserProfile;
+      const existing = docSnap.data() as UserProfile;
+      // Auto-elevate authorized admin emails if not already admin
+      if (isAdminEmail && existing.role !== "admin") {
+        await updateDoc(docRef, { role: "admin", updatedAt: Date.now() });
+        existing.role = "admin";
+      }
+      return existing;
     }
   } catch (err) {
     console.warn("Could not read user doc from Firestore:", err);
@@ -35,10 +57,10 @@ export const ensureUserDocumentInFirestore = async (
   const newProfile: UserProfile = {
     uid: firebaseUser.uid,
     email: firebaseUser.email,
-    displayName: customDisplayName || firebaseUser.displayName || "Valued Customer",
+    displayName: customDisplayName || firebaseUser.displayName || (isAdminEmail ? "Vedika Administrator" : "Valued Customer"),
     photoURL: firebaseUser.photoURL || null,
     phoneNumber: firebaseUser.phoneNumber || null,
-    role: "customer", // Set to "admin" in Firebase Console to grant admin access!
+    role: isAdminEmail ? "admin" : "customer",
     addresses: [],
     createdAt: Date.now(),
     updatedAt: Date.now(),
@@ -68,6 +90,42 @@ export const registerUser = async (
   }
 
   return await ensureUserDocumentInFirestore(firebaseUser, displayName);
+};
+
+export const registerAdminUser = async (
+  email: string,
+  pass: string,
+  displayName: string = "Store Administrator"
+): Promise<UserProfile> => {
+  const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+  const firebaseUser = userCredential.user;
+
+  try {
+    await updateProfile(firebaseUser, { displayName });
+  } catch (e) {
+    console.warn("Could not set displayName on auth user:", e);
+  }
+
+  const docRef = doc(db, COLLECTIONS.USERS, firebaseUser.uid);
+  const adminProfile: UserProfile = {
+    uid: firebaseUser.uid,
+    email: firebaseUser.email,
+    displayName,
+    photoURL: firebaseUser.photoURL || null,
+    phoneNumber: firebaseUser.phoneNumber || null,
+    role: "admin",
+    addresses: [],
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  };
+
+  try {
+    await setDoc(docRef, adminProfile);
+  } catch (err) {
+    console.warn("Could not write admin profile in Firestore:", err);
+  }
+
+  return adminProfile;
 };
 
 export const loginUser = async (email: string, pass: string): Promise<FirebaseUser> => {
@@ -238,6 +296,30 @@ export const rejectDealerAccount = async (uid: string): Promise<void> => {
 };
 
 /**
+ * Admin action: Set or update a dealer/distributor's commission rate & territory.
+ */
+export const updateDealerCommissionRate = async (
+  uid: string,
+  commissionRate: number,
+  assignedTerritory?: string
+): Promise<void> => {
+  const docRef = doc(db, COLLECTIONS.USERS, uid);
+  const docSnap = await getDoc(docRef);
+  if (!docSnap.exists()) throw new Error("Dealer account not found");
+
+  const updates: Record<string, any> = {
+    "dealerInfo.commissionRate": Number(commissionRate),
+    updatedAt: Date.now(),
+  };
+
+  if (assignedTerritory !== undefined) {
+    updates["dealerInfo.assignedTerritory"] = assignedTerritory;
+  }
+
+  await updateDoc(docRef, updates);
+};
+
+/**
  * Get all users who have applied for or have dealer status.
  */
 export const getAllDealers = async (): Promise<UserProfile[]> => {
@@ -391,4 +473,12 @@ export const subscribeToAuthChanges = (
   callback: (user: FirebaseUser | null) => void
 ) => {
   return onAuthStateChanged(auth, callback);
+};
+
+/**
+ * Permanently deletes a user document from Firestore 'users' collection.
+ */
+export const deleteUserFromFirestore = async (uid: string): Promise<void> => {
+  const docRef = doc(db, COLLECTIONS.USERS, uid);
+  await deleteDoc(docRef);
 };

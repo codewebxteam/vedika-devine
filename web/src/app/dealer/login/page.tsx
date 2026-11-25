@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -49,11 +49,28 @@ export default function DealerLoginPage() {
     setLoading(false);
   };
 
+  // Redirect if already logged in as dealer or admin
+  useEffect(() => {
+    if (user && profile) {
+      if (profile.role === "dealer" || profile.role === "admin") {
+        router.push("/dealer/dashboard");
+      }
+    }
+  }, [user, profile, router]);
+
   // If already logged in, check role
   if (user && profile) {
-    if (profile.role === "dealer") {
-      router.push("/dealer/dashboard");
-      return null;
+    if (profile.role === "dealer" || profile.role === "admin") {
+      return (
+        <div className="min-h-screen bg-stone-950 flex items-center justify-center text-stone-300">
+          <div className="text-center space-y-3">
+            <div className="w-10 h-10 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="text-xs uppercase font-bold tracking-widest text-stone-400">
+              Redirecting to Dealer Dashboard...
+            </p>
+          </div>
+        </div>
+      );
     }
 
     if (profile.role === "dealer_pending") {

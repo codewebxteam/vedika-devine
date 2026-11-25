@@ -38,7 +38,7 @@ export default function LoginPage() {
       await login(email, password);
       router.push("/");
     } catch (err: any) {
-      console.error("Login failed:", err);
+      console.warn("Login attempt failed:", err.code || err.message);
       setError(
         err.code === "auth/invalid-credential" || err.code === "auth/user-not-found"
           ? "Invalid email or password. Please verify your credentials."

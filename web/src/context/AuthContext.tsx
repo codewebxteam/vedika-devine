@@ -7,6 +7,8 @@ import {
   subscribeToAuthChanges,
   loginUser as apiLoginUser,
   registerUser as apiRegisterUser,
+  registerAdminUser as apiRegisterAdminUser,
+  resetPassword as apiResetPassword,
   loginWithGoogle as apiLoginWithGoogle,
   logoutUser as apiLogoutUser,
   getUserProfile,
@@ -31,6 +33,8 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, pass: string) => Promise<void>;
   register: (email: string, pass: string, name: string) => Promise<void>;
+  registerAdmin: (email: string, pass: string, name: string) => Promise<UserProfile>;
+  resetPasswordLink: (email: string) => Promise<void>;
   registerDealer: (data: DealerRegistrationData) => Promise<UserProfile>;
   loginGoogle: () => Promise<void>;
   logout: () => Promise<void>;
@@ -51,6 +55,8 @@ const AuthContext = createContext<AuthContextType>({
   loading: true,
   login: async () => {},
   register: async () => {},
+  registerAdmin: async () => ({} as UserProfile),
+  resetPasswordLink: async () => {},
   registerDealer: async () => ({} as UserProfile),
   loginGoogle: async () => {},
   logout: async () => {},
@@ -101,6 +107,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const register = async (email: string, pass: string, name: string) => {
     const userProfile = await apiRegisterUser(email, pass, name);
     setProfile(userProfile);
+  };
+
+  const registerAdmin = async (email: string, pass: string, name: string) => {
+    const adminProfile = await apiRegisterAdminUser(email, pass, name);
+    setProfile(adminProfile);
+    return adminProfile;
+  };
+
+  const resetPasswordLink = async (email: string) => {
+    await apiResetPassword(email);
   };
 
   const registerDealer = async (data: DealerRegistrationData) => {
@@ -167,6 +183,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loading,
         login,
         register,
+        registerAdmin,
+        resetPasswordLink,
         registerDealer,
         loginGoogle,
         logout,

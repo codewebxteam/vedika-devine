@@ -16,6 +16,7 @@ import {
   Store,
   LogOut,
   Sparkles,
+  CheckCircle2,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
@@ -23,13 +24,23 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const router = useRouter();
-  const { user, profile, isAdmin, isDealer, loading, logout, login } = useAuth();
+  const {
+    user,
+    profile,
+    isAdmin,
+    isDealer,
+    loading,
+    logout,
+    login,
+    resetPasswordLink,
+  } = useAuth();
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   // Instant scroll-to-top so navigating from the footer never leaves the user at the bottom
   useEffect(() => {
@@ -40,15 +51,41 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
     e.preventDefault();
     setSubmitting(true);
     setError("");
+    setSuccess("");
     try {
-      await login(adminEmail, adminPassword);
+      await login(adminEmail.trim(), adminPassword);
     } catch (err: any) {
-      console.error("Admin login error:", err);
-      setError(
-        err.code === "auth/invalid-credential" || err.code === "auth/user-not-found"
-          ? "Invalid admin email or password. Please verify your credentials."
-          : err.message || "Authentication failed. Please try again."
-      );
+      console.warn("Admin login attempt failed:", err.code || err.message);
+      if (
+        err.code === "auth/invalid-credential" ||
+        err.code === "auth/user-not-found" ||
+        err.code === "auth/wrong-password"
+      ) {
+        setError("Invalid admin email or password. Please verify your credentials.");
+      } else if (err.code === "auth/too-many-requests") {
+        setError("Too many failed login attempts. Please wait a few moments or use 'Forgot Password'.");
+      } else {
+        setError(err.message || "Authentication failed. Please verify your credentials.");
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!adminEmail.trim()) {
+      setError("Please enter your admin email address first, then click 'Forgot password?'.");
+      return;
+    }
+    setSubmitting(true);
+    setError("");
+    setSuccess("");
+    try {
+      await resetPasswordLink(adminEmail.trim());
+      setSuccess(`Password reset instructions sent to ${adminEmail.trim()}! Please check your email inbox.`);
+    } catch (err: any) {
+      console.warn("Password reset link error:", err.code || err.message);
+      setError(err.message || "Failed to send password reset email.");
     } finally {
       setSubmitting(false);
     }
@@ -68,11 +105,11 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
     );
   }
 
-  // 2. Unauthenticated: Full-Screen Dedicated Admin Login Page
+  // 2. Unauthenticated: Full-Screen Dedicated Admin Login Page (Strict Email & Password Only)
   if (!user) {
     return (
       <div className="min-h-screen w-full bg-[#0C0A09] flex items-center justify-center px-4 sm:px-6 py-6 sm:py-12 relative overflow-hidden text-stone-100">
-        {/* Opulent Ambient Luxury Golden Glows (Fills empty screen space with warmth) */}
+        {/* Opulent Ambient Luxury Golden Glows */}
         <div className="absolute top-1/4 -left-10 w-[450px] h-[450px] bg-radial from-amber-500/15 via-amber-600/5 to-transparent blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-10 w-[450px] h-[450px] bg-radial from-amber-600/15 via-amber-700/5 to-transparent blur-3xl pointer-events-none" />
 
@@ -101,13 +138,21 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
 
           {/* Error Alert */}
           {error && (
-            <div className="p-3.5 rounded-2xl bg-rose-950/80 border border-rose-800 text-rose-300 text-xs sm:text-sm flex items-center gap-2.5 text-left animate-in fade-in">
-              <AlertCircle className="w-5 h-5 shrink-0 text-rose-400" />
+            <div className="p-3.5 rounded-2xl bg-rose-950/80 border border-rose-800 text-rose-300 text-xs sm:text-sm flex items-start gap-2.5 text-left animate-in fade-in">
+              <AlertCircle className="w-5 h-5 shrink-0 text-rose-400 mt-0.5" />
               <span>{error}</span>
             </div>
           )}
 
-          {/* Login Form */}
+          {/* Success Alert */}
+          {success && (
+            <div className="p-3.5 rounded-2xl bg-emerald-950/80 border border-emerald-800 text-emerald-300 text-xs sm:text-sm flex items-start gap-2.5 text-left animate-in fade-in">
+              <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-400 mt-0.5" />
+              <span>{success}</span>
+            </div>
+          )}
+
+          {/* Strict Email & Password Login Form */}
           <form onSubmit={handleAdminLogin} className="space-y-4 sm:space-y-5 text-left">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">
@@ -127,9 +172,18 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">
-                Password
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-amber-300">
+                  Password
+                </label>
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  className="text-xs text-amber-400 hover:text-amber-300 font-semibold transition-colors cursor-pointer"
+                >
+                  Forgot password?
+                </button>
+              </div>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-500" />
                 <input
@@ -143,7 +197,7 @@ export const AdminGuard: React.FC<{ children: React.ReactNode }> = ({
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-200 p-1"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-200 p-1 cursor-pointer"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>

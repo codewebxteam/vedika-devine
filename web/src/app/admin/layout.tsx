@@ -26,30 +26,30 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl text-stone-300 hover:text-white bg-stone-800 border border-stone-700/60"
+            className="p-2 rounded-xl text-stone-300 hover:text-white bg-stone-800 border border-stone-700/60 cursor-pointer active:scale-95 transition-transform"
             aria-label="Toggle Navigation"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-amber-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
         {/* Mobile Sidebar Overlay Drawer */}
         {mobileMenuOpen && (
           <div
-            className="md:hidden fixed inset-0 z-40 bg-black/70 backdrop-blur-xs top-[53px]"
+            className="md:hidden fixed inset-x-0 bottom-0 top-[53px] z-40 bg-black/75 backdrop-blur-xs flex"
             onClick={() => setMobileMenuOpen(false)}
           >
             <div
-              className="bg-stone-900 w-72 h-full border-r border-stone-800 overflow-y-auto"
+              className="bg-stone-900 w-72 sm:w-80 h-full border-r border-stone-800 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200"
               onClick={(e) => e.stopPropagation()}
             >
-              <AdminSidebar onNavigate={() => setMobileMenuOpen(false)} />
+              <AdminSidebar hideHeader onNavigate={() => setMobileMenuOpen(false)} />
             </div>
           </div>
         )}
 
         {/* Desktop Sidebar (Sticky left) */}
-        <div className="hidden md:block shrink-0 sticky top-0 h-screen overflow-y-auto border-r border-stone-800/80">
+        <div className="hidden md:block shrink-0 sticky top-0 h-screen border-r border-stone-800/80">
           <AdminSidebar />
         </div>
 

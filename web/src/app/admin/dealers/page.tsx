@@ -17,17 +17,29 @@ import {
   UserCheck,
   FileText,
   AlertCircle,
+  Percent,
+  Coins,
+  Store,
+  TrendingUp,
+  Edit3,
+  Save,
+  X,
 } from "lucide-react";
 import {
   UserProfile,
+  Order,
   getAllDealers,
+  getAllOrders,
   approveDealerAccount,
   rejectDealerAccount,
+  updateDealerCommissionRate,
+  formatCurrency,
   formatDate,
 } from "@backend/index";
 
 export default function AdminDealersPage() {
   const [dealers, setDealers] = useState<UserProfile[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<"pending" | "approved" | "all">(
@@ -36,19 +48,29 @@ export default function AdminDealersPage() {
   const [actionUid, setActionUid] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
-  const fetchDealersList = async () => {
+  // Commission Editor State
+  const [editingCommissionUid, setEditingCommissionUid] = useState<string | null>(null);
+  const [commissionInput, setCommissionInput] = useState<number>(10);
+  const [territoryInput, setTerritoryInput] = useState<string>("");
+  const [savingCommission, setSavingCommission] = useState(false);
+
+  const fetchDealersAndOrders = async () => {
     setLoading(true);
     try {
-      const data = await getAllDealers();
-      setDealers(data);
+      const [dealersData, ordersData] = await Promise.all([
+        getAllDealers(),
+        getAllOrders(),
+      ]);
+      setDealers(dealersData);
+      setOrders(ordersData);
     } catch (err: any) {
-      console.error("Error fetching dealers:", err);
+      console.error("Error fetching dealers & orders:", err);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchDealersList();
+    fetchDealersAndOrders();
   }, []);
 
   const handleApprove = async (dealer: UserProfile) => {
@@ -104,6 +126,49 @@ export default function AdminDealersPage() {
     setActionUid(null);
   };
 
+  const handleStartEditCommission = (dealer: UserProfile) => {
+    setEditingCommissionUid(dealer.uid);
+    setCommissionInput(dealer.dealerInfo?.commissionRate ?? 10);
+    setTerritoryInput(dealer.dealerInfo?.assignedTerritory || dealer.dealerInfo?.city || "");
+  };
+
+  const handleSaveCommission = async (uid: string) => {
+    setSavingCommission(true);
+    setMessage(null);
+    try {
+      await updateDealerCommissionRate(uid, commissionInput, territoryInput.trim());
+      setDealers((prev) =>
+        prev.map((d) =>
+          d.uid === uid
+            ? {
+                ...d,
+                dealerInfo: d.dealerInfo
+                  ? {
+                      ...d.dealerInfo,
+                      commissionRate: commissionInput,
+                      assignedTerritory: territoryInput.trim(),
+                    }
+                  : undefined,
+              }
+            : d
+        )
+      );
+      setMessage(`Successfully updated commission rate to ${commissionInput}% for distributor!`);
+      setEditingCommissionUid(null);
+    } catch (err: any) {
+      alert(`Failed to update commission: ${err.message}`);
+    }
+    setSavingCommission(false);
+  };
+
+  // Compute Overall KPI Metrics
+  const distributorOrders = orders.filter((o) => o.orderType === "distributor_assisted");
+  const totalAssistedSales = distributorOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+  const totalCommissionPayable = distributorOrders.reduce(
+    (sum, o) => sum + (o.partnerCommissionAmount || 0),
+    0
+  );
+
   const pendingCount = dealers.filter(
     (d) => d.role === "dealer_pending" || d.dealerInfo?.status === "pending"
   ).length;
@@ -127,7 +192,8 @@ export default function AdminDealersPage() {
       d.email?.toLowerCase().includes(s) ||
       d.dealerInfo?.businessName?.toLowerCase().includes(s) ||
       d.dealerInfo?.city?.toLowerCase().includes(s) ||
-      d.dealerInfo?.phone?.includes(s)
+      d.dealerInfo?.phone?.includes(s) ||
+      d.dealerInfo?.assignedTerritory?.toLowerCase().includes(s)
     );
   });
 
@@ -149,13 +215,68 @@ export default function AdminDealersPage() {
         </div>
 
         <button
-          onClick={fetchDealersList}
+          onClick={fetchDealersAndOrders}
           disabled={loading}
-          className="p-2.5 rounded-2xl bg-stone-900 border border-stone-800 hover:bg-stone-800 text-stone-300 transition-colors self-start sm:self-auto"
+          className="p-2.5 rounded-2xl bg-stone-900 border border-stone-800 hover:bg-stone-800 text-stone-300 transition-colors self-start sm:self-auto cursor-pointer"
           title="Refresh List"
         >
           <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
         </button>
+      </div>
+
+      {/* Top Distributor Network KPI Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4">
+        <div className="p-4 rounded-2xl bg-stone-900 border border-stone-800">
+          <div className="flex items-center justify-between text-stone-400 text-xs">
+            <span>Active Distributors</span>
+            <Building2 className="w-4 h-4 text-amber-500" />
+          </div>
+          <p className="text-xl sm:text-2xl font-bold text-white mt-1.5">
+            {approvedCount}
+          </p>
+          <p className="text-[10px] text-stone-500 mt-0.5">
+            {pendingCount} Pending Approvals
+          </p>
+        </div>
+
+        <div className="p-4 rounded-2xl bg-stone-900 border border-stone-800">
+          <div className="flex items-center justify-between text-stone-400 text-xs">
+            <span>Shop Orders Booked</span>
+            <Store className="w-4 h-4 text-emerald-400" />
+          </div>
+          <p className="text-xl sm:text-2xl font-bold text-emerald-400 mt-1.5">
+            {distributorOrders.length}
+          </p>
+          <p className="text-[10px] text-stone-500 mt-0.5">
+            By Field Distributors
+          </p>
+        </div>
+
+        <div className="p-4 rounded-2xl bg-stone-900 border border-stone-800">
+          <div className="flex items-center justify-between text-stone-400 text-xs">
+            <span>Distributor Retail Sales</span>
+            <TrendingUp className="w-4 h-4 text-amber-400" />
+          </div>
+          <p className="text-xl sm:text-2xl font-bold text-white mt-1.5">
+            {formatCurrency(totalAssistedSales)}
+          </p>
+          <p className="text-[10px] text-stone-500 mt-0.5">
+            Total Dukan Revenue
+          </p>
+        </div>
+
+        <div className="p-4 rounded-2xl bg-stone-900 border border-stone-800">
+          <div className="flex items-center justify-between text-stone-400 text-xs">
+            <span>Total Commission</span>
+            <Coins className="w-4 h-4 text-amber-400" />
+          </div>
+          <p className="text-xl sm:text-2xl font-bold text-amber-400 mt-1.5">
+            {formatCurrency(totalCommissionPayable)}
+          </p>
+          <p className="text-[10px] text-stone-500 mt-0.5">
+            Distributor Earnings
+          </p>
+        </div>
       </div>
 
       {message && (
@@ -234,6 +355,14 @@ export default function AdminDealersPage() {
               d.role === "dealer" || d.dealerInfo?.status === "approved";
             const isPending = !isApproved;
             const isActing = actionUid === d.uid;
+
+            const dealerOrders = orders.filter((o) => o.bookedByPartnerId === d.uid);
+            const dealerSales = dealerOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+            const dealerComm = dealerOrders.reduce(
+              (sum, o) => sum + (o.partnerCommissionAmount || 0),
+              0
+            );
+            const currentCommissionRate = d.dealerInfo?.commissionRate ?? 10;
 
             const cleanPhone = (d.dealerInfo?.phone || d.phoneNumber || "").replace(
               /[^0-9]/g,
@@ -362,6 +491,109 @@ export default function AdminDealersPage() {
                     )}
                   </div>
                 </div>
+
+                {/* Distributor Commission & Retail Performance Block */}
+                {isApproved && (
+                  <div className="mt-4 pt-3 border-t border-stone-800 flex flex-wrap items-center justify-between gap-3 bg-stone-950/60 p-3.5 rounded-2xl border border-stone-800/80">
+                    <div className="flex flex-wrap items-center gap-3 text-xs">
+                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-950/60 border border-amber-800 text-amber-300 font-bold">
+                        <Percent className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Commission: {currentCommissionRate}%</span>
+                      </div>
+                      {d.dealerInfo?.assignedTerritory && (
+                        <span className="text-stone-400 text-[11px] flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-stone-500" />
+                          <span>Territory: <strong className="text-stone-200">{d.dealerInfo.assignedTerritory}</strong></span>
+                        </span>
+                      )}
+                      <div className="text-[11px] text-stone-300 flex items-center gap-2">
+                        <span>Shop Orders: <strong className="text-white">{dealerOrders.length}</strong></span>
+                        <span>•</span>
+                        <span>Sales: <strong className="text-white">{formatCurrency(dealerSales)}</strong></span>
+                        <span>•</span>
+                        <span>Earned: <strong className="text-emerald-400">{formatCurrency(dealerComm)}</strong></span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => handleStartEditCommission(d)}
+                      className="px-3.5 py-1.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-amber-300 text-xs font-semibold flex items-center gap-1.5 transition-colors border border-stone-700 cursor-pointer"
+                    >
+                      <Edit3 className="w-3.5 h-3.5" />
+                      <span>Set Commission %</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* Inline Commission Editor Form */}
+                {editingCommissionUid === d.uid && (
+                  <div className="mt-3 p-4 rounded-2xl bg-stone-950 border border-amber-500/50 space-y-3 animate-in fade-in">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+                        <Percent className="w-4 h-4 text-amber-400" />
+                        <span>Configure Distributor Commission & Territory</span>
+                      </span>
+                      <button
+                        onClick={() => setEditingCommissionUid(null)}
+                        className="p-1 text-stone-400 hover:text-stone-200 cursor-pointer"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[11px] text-stone-400 mb-1 font-semibold">
+                          Retail Commission Rate (%)
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="0.5"
+                            value={commissionInput}
+                            onChange={(e) => setCommissionInput(Number(e.target.value))}
+                            className="w-full pl-3 pr-8 py-2 rounded-xl bg-stone-900 border border-stone-700 text-white text-xs font-bold focus:border-amber-500 focus:outline-hidden"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 text-xs font-bold">
+                            %
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] text-stone-400 mb-1 font-semibold">
+                          Assigned Territory / Region
+                        </label>
+                        <input
+                          type="text"
+                          value={territoryInput}
+                          onChange={(e) => setTerritoryInput(e.target.value)}
+                          placeholder="e.g. Kushinagar & Deoria Belt"
+                          className="w-full px-3 py-2 rounded-xl bg-stone-900 border border-stone-700 text-white text-xs focus:border-amber-500 focus:outline-hidden"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-end gap-2 pt-1">
+                      <button
+                        onClick={() => setEditingCommissionUid(null)}
+                        className="px-3 py-1.5 text-xs text-stone-400 hover:text-stone-200 cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() => handleSaveCommission(d.uid)}
+                        disabled={savingCommission}
+                        className="px-4 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-500/20 cursor-pointer disabled:opacity-60"
+                      >
+                        <Save className="w-3.5 h-3.5" />
+                        <span>{savingCommission ? "Saving..." : "Save Commission Rate"}</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })

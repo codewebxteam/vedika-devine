@@ -56,4 +56,17 @@ export interface Order {
   cancelledAt?: number;
   cancelReason?: string;
   dispatchNotes?: string;
+  // Distributor / Partner Retail POS Attribution
+  orderType?: "direct" | "distributor_assisted";
+  bookedByPartnerId?: string;
+  bookedByPartnerName?: string;
+  bookedByPartnerBusiness?: string;
+  bookedByPartnerPhone?: string;
+  shopName?: string;
+  shopOwnerName?: string;
+  shopPhone?: string;
+  partnerCommissionRate?: number; // % at time of booking e.g. 10
+  partnerCommissionAmount?: number; // calculated e.g. ₹450
+  commissionStatus?: "Pending" | "Approved" | "Paid" | "Cancelled";
+  distributorNotes?: string;
 }

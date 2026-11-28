@@ -38,10 +38,10 @@ export const CategoryPills: React.FC = () => {
               <span>Curated Collections</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Shop by <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-200 to-amber-500">Candle Type</span>
+              Shop by <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-200 to-amber-500">Sacred Category (पूजा सामग्री)</span>
             </h2>
             <p className="text-xs sm:text-sm text-stone-400 mt-1 max-w-xl">
-              Hand-poured for every sacred puja, relaxation corner, romantic dinner, and grand festive celebration.
+              Pure Bhimseni camphor, cow ghee diyas, herbal dhoop, hawan essentials, and divine living items for every sacred ceremony.
             </p>
           </div>
 

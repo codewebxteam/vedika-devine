@@ -88,7 +88,7 @@ export default function OrdersPage() {
       <div className="py-28 text-center space-y-4 bg-[#FFFDF9] min-h-screen">
         <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
         <p className="font-serif text-sm font-semibold text-black">
-          Loading your candle orders...
+          Loading your sacred orders...
         </p>
       </div>
     );
@@ -102,7 +102,7 @@ export default function OrdersPage() {
             <Package className="w-8 h-8" />
           </div>
           <h2 className="font-serif text-2xl font-bold text-black">
-            Track Your Candle Orders
+            Track Your Sacred Orders
           </h2>
           <p className="text-xs text-stone-600 leading-relaxed">
             Please sign in to view your past and active orders, courier tracking updates, and invoices.
@@ -145,7 +145,7 @@ export default function OrdersPage() {
               <span>Purchase History & Tracking</span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              My Candle Orders & Tracking
+              My Sacred Orders & Tracking
             </h1>
             <p className="text-xs sm:text-sm text-stone-400">
               Review current delivery statuses, consignment tracking, and past order details.
@@ -165,7 +165,7 @@ export default function OrdersPage() {
               href="/shop"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs shadow-md hover:bg-amber-100 transition-all"
             >
-              <span>Order More Candles</span>
+              <span>Order More Sacred Items</span>
               <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
             </Link>
           </div>
@@ -205,7 +205,7 @@ export default function OrdersPage() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by Order # or Candle name..."
+              placeholder="Search by Order # or Product name..."
               className="w-full pl-9 pr-3.5 py-2 rounded-full border border-amber-300 bg-white text-xs text-black focus:outline-none focus:ring-2 focus:ring-amber-500/20"
             />
             <Search className="w-3.5 h-3.5 text-stone-400 absolute left-3 top-2.5" />
@@ -217,7 +217,7 @@ export default function OrdersPage() {
           <div className="bg-white rounded-3xl border border-amber-200 p-12 text-center space-y-4 shadow-sm">
             <Package className="w-12 h-12 text-amber-600 mx-auto" />
             <h3 className="font-serif font-bold text-lg text-black">
-              {search ? "No matching candle orders found" : "No orders found for this status"}
+              {search ? "No matching orders found" : "No orders found for this status"}
             </h3>
             <p className="text-xs text-stone-500 max-w-sm mx-auto">
               {search

@@ -127,7 +127,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-xs text-stone-300 leading-relaxed">
-              Handcrafting luxury aromatherapy soy candles, glass jars, festival gift hampers, and sacred temple akhand diyas. Infused with organic therapeutic essential oils.
+              Crafting pure, sacred Pooja Samagri, 100% natural Bhimseni camphor, pure cow ghee diya batti, bamboo-less dhoop, 51-herb hawan samagri, and divine living fragrances.
             </p>
 
             {/* Social Media Channels */}
@@ -211,7 +211,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-amber-300 flex items-center gap-1.5 hover:translate-x-1 transition-all"
                 >
                   <span className="text-amber-500/60 text-[10px]">›</span>
-                  <span>Browse All Candles</span>
+                  <span>Browse All Pooja Samagri</span>
                 </Link>
               </li>
               <li>

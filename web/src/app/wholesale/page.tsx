@@ -26,19 +26,19 @@ export default function WholesalePage() {
   const [city, setCity] = useState("");
   const [estimatedQuantity, setEstimatedQuantity] = useState("50 - 100 units");
   const [selectedTypes, setSelectedTypes] = useState<string[]>([
-    "Scented Jar Candles",
+    "Bhimseni Pure Camphor",
   ]);
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const candleTypesList = [
-    "Scented Jar Candles (Amber & Frosted Glass)",
-    "Pillar & Bubble Decorative Candles",
-    "Pooja & Akhand Temple Wax Diyas",
-    "Smokeless Soy Tealights (50-pack)",
-    "Brass Urli Triple-Wick Candles",
-    "Custom Private Label / Corporate Gifting",
+    "Pure Bhimseni Camphor (भीमसेनी कपूर)",
+    "Pure Cow Ghee Diya Batti (शुद्ध गाय का घी बत्ती)",
+    "Natural Herbal Dhoop & Agarbatti (धूप एवं अगरबत्ती)",
+    "Sampoorna Vedic Hawan Samagri (हवन सामग्री)",
+    "Sacred Pooja Kits & Thali Essentials",
+    "Aromatic & Temple Sacred Candles",
   ];
 
   const handleTypeToggle = (type: string) => {
@@ -82,10 +82,10 @@ export default function WholesalePage() {
             <span>{APP_CONFIG.COMPANY_LEGAL_NAME}</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-bold leading-tight">
-            Wholesale Candle Supply & Dealer Partnership
+            Wholesale Sacred Pooja Samagri & Dealer Partnership
           </h1>
           <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
-            Supply your retail store, boutique, gift shop, or wedding hamper business directly from our manufacturing unit at Turkpatti Bazar, Kushinagar (UP). Enjoy direct factory pricing, custom branding, and pan-India dispatch.
+            Supply your retail store, pooja bhandar, mandir trust, or regional distribution network directly from our manufacturing unit at Turkpatti Bazar, Kushinagar (UP). Enjoy direct factory pricing, pure ingredients, and pan-India dispatch.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -104,7 +104,7 @@ export default function WholesalePage() {
               <span>Dealer Partner Login</span>
             </Link>
             <a
-              href={`https://wa.me/91${APP_CONFIG.PHONE_RAW}?text=${encodeURIComponent(`Hello ${APP_CONFIG.BRAND_NAME}, I am interested in wholesale candle dealer rates.`)}`}
+              href={`https://wa.me/91${APP_CONFIG.PHONE_RAW}?text=${encodeURIComponent(`Hello ${APP_CONFIG.BRAND_NAME}, I am interested in wholesale pooja samagri dealer rates.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer"
@@ -299,7 +299,7 @@ export default function WholesalePage() {
 
               <div>
                 <label className="block text-xs font-bold text-stone-700 mb-2">
-                  Candle Varieties You Are Interested In:
+                  Pooja Samagri & Categories You Are Interested In:
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {candleTypesList.map((type) => (

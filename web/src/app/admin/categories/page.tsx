@@ -127,12 +127,12 @@ export default function AdminCategoriesPage() {
   };
 
   const handleSeedDefaults = async () => {
-    if (!confirm("This will restore default candle categories if any are missing. Proceed?")) return;
+    if (!confirm("This will restore default pooja samagri categories if any are missing. Proceed?")) return;
     setLoading(true);
     try {
       const fresh = await seedDefaultCategories();
       setCategories(fresh);
-      setAlertMsg({ text: "Default candle categories synced and restored successfully!", type: "success" });
+      setAlertMsg({ text: "Default categories synced and restored successfully!", type: "success" });
       setTimeout(() => setAlertMsg(null), 3500);
     } catch (err: any) {
       setAlertMsg({ text: `Sync failed: ${err.message}`, type: "error" });
@@ -157,10 +157,10 @@ export default function AdminCategoriesPage() {
             <span>Store Taxonomy & Collections</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
-            Candle Categories Management
+            Pooja Samagri Categories Management
           </h1>
           <p className="text-xs text-stone-400 mt-1">
-            Create, re-order and customize candle categories. Changes instantly update the customer store, Shop filter & navigation.
+            Create, re-order and customize categories. Changes instantly update the customer store, Shop filter & navigation.
           </p>
         </div>
 
@@ -195,7 +195,7 @@ export default function AdminCategoriesPage() {
             href="/admin/products"
             className="px-4 py-2.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-semibold flex items-center gap-2 transition-colors cursor-pointer"
           >
-            <span>2. Add Candles</span>
+            <span>2. Add Products</span>
           </Link>
           <Link
             href="/admin/inventory"
@@ -356,7 +356,7 @@ export default function AdminCategoriesPage() {
 
                     {/* Product count pill */}
                     <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-stone-700 text-[11px] font-bold text-stone-200">
-                      {catProducts.length} Candle{catProducts.length === 1 ? "" : "s"}
+                      {catProducts.length} Item{catProducts.length === 1 ? "" : "s"}
                     </div>
                   </div>
 

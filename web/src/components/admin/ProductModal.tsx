@@ -135,8 +135,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         cartonWeight: "22.5 kg",
         cartonPrice: 7999,
         description:
-          "Handcrafted luxury candle made at M/S RMPG Vedika Divine Home Industries with pure botanical wax, therapeutic aroma, and smokeless slow burn.",
-        shortDescription: "Luxury scented candle for relaxation and holy rituals.",
+          "Pure and sacred Pooja Samagri crafted at M/S RMPG Vedika Divine Home Industries with authentic Vedic botanicals, divine temple aroma, and pristine purity.",
+        shortDescription: "Pure and sacred essentials for daily pooja, rituals, and festive celebrations.",
         isWholesaleAvailable: true,
         wholesalePrice: 180,
         wholesaleMinQty: 24,
@@ -262,7 +262,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-white text-base">
-                {isEditing ? "Edit Candle Product" : "Add New Candle Product"}
+                {isEditing ? "Edit Product" : "Add New Product"}
               </h3>
               <p className="text-[11px] text-stone-400 mt-0.5">
                 M/S RMPG Vedika Divine Home Industries Catalog
@@ -289,19 +289,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           {/* Basic Info */}
           <div className="space-y-4">
             <h4 className="text-xs uppercase font-bold text-amber-400 tracking-wider">
-              1. Basic Candle Details
+              1. Basic Product Details
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="sm:col-span-2">
                 <label className="block text-[11px] font-semibold text-stone-400 mb-1">
-                  Candle Name *
+                  Product Name *
                 </label>
                 <input
                   type="text"
                   required
                   value={formData.name || ""}
                   onChange={(e) => handleNameChange(e.target.value)}
-                  placeholder="e.g. Royal Oud & Amber Luxury Scented Candle"
+                  placeholder="e.g. Pure Bhimseni Camphor / Cow Ghee Diya Batti"
                   className="w-full px-3.5 py-2.5 rounded-xl bg-stone-950 border border-stone-800 text-stone-100 placeholder-stone-600 focus:outline-hidden focus:border-amber-500"
                 />
               </div>
@@ -562,10 +562,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             </div>
           </div>
 
-          {/* Candle Specifications */}
+          {/* Product Specifications */}
           <div className="space-y-4 pt-2 border-t border-stone-800/80">
             <h4 className="text-xs uppercase font-bold text-amber-400 tracking-wider">
-              4. Candle Specifications & Fragrance
+              4. Product Specifications & Fragrance
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
@@ -753,7 +753,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                     ) : (
                       <>
                         <Upload className="w-4 h-4" />
-                        <span>Upload Candle Photo (ImageKit)</span>
+                        <span>Upload Product Photo (ImageKit)</span>
                       </>
                     )}
                     <input
@@ -782,7 +782,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   </div>
                 </div>
                 <p className="text-[10px] text-stone-500">
-                  Upload your genuine candle photograph. It will be uploaded straight to your ImageKit CDN account (/vedika-divine/products).
+                  Upload your genuine product photograph. It will be uploaded straight to your ImageKit CDN account (/vedika-divine/products).
                 </p>
               </div>
             )}
@@ -878,7 +878,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               {loading
                 ? "Saving..."
                 : isEditing
-                ? "Update Candle"
+                ? "Update Product"
                 : "Add to Catalog"}
             </button>
           </div>

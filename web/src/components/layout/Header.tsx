@@ -129,7 +129,7 @@ export const Header: React.FC = () => {
                       <div className="absolute top-full left-0 w-64 bg-white rounded-2xl shadow-[0_16px_48px_rgba(0,0,0,0.22)] border border-amber-200/90 py-3 z-50 animate-in fade-in slide-in-from-top-2">
                         <div className="px-4 py-1.5 border-b border-amber-50">
                           <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider">
-                            Candle Varieties
+                            Pooja Samagri & Categories
                           </span>
                         </div>
                         <Link
@@ -224,7 +224,7 @@ export const Header: React.FC = () => {
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
                 className="p-1.5 sm:p-2 rounded-full text-stone-700 hover:text-amber-700 hover:bg-amber-50/60 transition-colors cursor-pointer"
-                title="Search Candles"
+                title="Search Pooja Samagri & Fragrances"
                 aria-label="Search"
               >
                 <Search className="w-5 h-5" />
@@ -239,7 +239,7 @@ export const Header: React.FC = () => {
                       autoFocus
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search soy candles, aromas..."
+                      placeholder="Search pooja samagri, kapur, dhoop, diyas..."
                       className="w-full pl-9 pr-4 py-2 rounded-xl bg-amber-50/40 border border-amber-200 text-xs text-stone-900 focus:outline-hidden focus:border-amber-500"
                     />
                     <Search className="w-4 h-4 text-amber-700 absolute left-3 top-2.5" />
@@ -286,7 +286,7 @@ export const Header: React.FC = () => {
                         className="flex items-center gap-2 px-4 py-2 text-stone-700 hover:bg-amber-50 hover:text-amber-800"
                       >
                         <PackageCheck className="w-4 h-4 text-amber-600" />
-                        <span>My Candle Orders</span>
+                        <span>My Orders (पूजा ऑर्डर्स)</span>
                       </Link>
 
                       <Link
@@ -441,7 +441,7 @@ export const Header: React.FC = () => {
               : "bg-white text-stone-700 hover:bg-amber-100 border border-amber-200/80"
           }`}
         >
-          ✨ All Candles
+          ✨ All Sacred Essentials
         </Link>
         {categories.map((cat) => (
           <Link
@@ -596,7 +596,7 @@ export const Header: React.FC = () => {
             <div className="flex items-center justify-between pb-1.5 border-b border-amber-100">
               <span className="text-[11px] font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
                 <Flame className="w-3.5 h-3.5 text-amber-600" />
-                <span>Candle Varieties & Collections</span>
+                <span>Pooja Samagri & Sacred Collections</span>
               </span>
               <Link
                 href="/shop"

@@ -118,7 +118,7 @@ export const OrderTrackingModal: React.FC<OrderTrackingModalProps> = ({
               Order #{order.orderNumber}
             </h2>
             <p className="text-xs text-stone-300">
-              Placed on {formatDate(order.createdAt)} • {order.items.length} candle items
+              Placed on {formatDate(order.createdAt)} • {order.items.length} items
             </p>
           </div>
 
@@ -301,7 +301,7 @@ export const OrderTrackingModal: React.FC<OrderTrackingModalProps> = ({
                 Packaging & Fragile Care
               </span>
               <p className="text-[11px] text-stone-600 leading-relaxed">
-                All Vedika Divine candles are encased in heavy-duty thermocol & air-bubble cushioning to guarantee zero melted wax or cracked glass in transit.
+                All Vedika Divine orders are encased in heavy-duty protective packaging & air-bubble cushioning to guarantee pristine purity and zero transit damage.
               </p>
             </div>
           </div>

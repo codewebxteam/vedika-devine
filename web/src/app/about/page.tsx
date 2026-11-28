@@ -38,7 +38,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-stone-300 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed font-normal">
-            {APP_CONFIG.COMPANY_LEGAL_NAME} is an authentic candle manufacturer headquartered at Turkpatti Bazar, Kushinagar (Uttar Pradesh), dedicated to bringing pure light, sustainable plant soy wax, and soothing aromatherapy into Indian homes and temples.
+            {APP_CONFIG.COMPANY_LEGAL_NAME} is an authentic manufacturer of pure Sacred Pooja Samagri, 100% natural Bhimseni camphor, pure cow ghee diya batti, herbal dhoop, hawan samagri, and divine living essentials headquartered at Turkpatti Bazar, Kushinagar (Uttar Pradesh), dedicated to bringing Vedic purity, sacred temple rituals, and soothing divine aromas into Indian homes and mandirs.
           </p>
         </div>
       </section>
@@ -62,9 +62,9 @@ export default function AboutPage() {
             <div className="w-14 h-14 rounded-2xl bg-black text-amber-400 flex items-center justify-center font-bold shadow-md">
               <Flame className="w-7 h-7 fill-amber-400" />
             </div>
-            <h3 className="font-serif font-bold text-xl text-black">100% Plant Soy Wax</h3>
+            <h3 className="font-serif font-bold text-xl text-black">100% Vedic & Pure Ingredients</h3>
             <p className="text-xs text-stone-600 leading-relaxed font-normal">
-              We never use toxic petroleum paraffin. Our candles are hand-poured using clean-burning, renewable soy wax infused with therapeutic essential oils for clean indoor air.
+              We never use synthetic paraffin or adulterated animal fats. Our pooja essentials, camphor, and ghee diyas are made using authentic sacred ingredients and cold-pressed pure botanicals for soot-free divine devotion.
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export default function AboutPage() {
             </div>
             <h3 className="font-serif font-bold text-xl text-black">Direct Kushinagar Unit</h3>
             <p className="text-xs text-stone-600 leading-relaxed font-normal">
-              Manufactured with artisan pride at Turkpatti Bazar, Kushinagar (UP). From temple Akhand diyas to luxury frosted glass jars and wholesale dealer master cartons.
+              Manufactured with devotion at Turkpatti Bazar, Kushinagar (UP). From sacred Akhand ghee diyas & Bhimseni kapur to dhoop, hawan samagri and wholesale dealer master cartons.
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 ENTITY TYPE: {APP_CONFIG.ENTITY_TYPE}
               </p>
               <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
-                Operating under registered standards, our Kushinagar factory combines ancient Vedic devotion with modern international candle pouring techniques. We supply retail boutique stores, spiritual ashrams, wedding decorators, and authorized regional distributors across all Indian states.
+                Operating under registered standards, our Kushinagar manufacturing facility combines timeless Vedic traditions with modern hygienic production standards. We supply retail pooja bhandars, spiritual ashrams, temples, wedding decorators, and authorized regional distributors across all Indian states.
               </p>
 
               <div className="space-y-2.5 text-xs text-stone-300 pt-2">

@@ -598,11 +598,11 @@ export const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({
             </div>
           </div>
 
-          {/* Candle Items List */}
+          {/* Items List */}
           <div className="space-y-3">
             <h4 className="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-1.5 text-stone-300">
               <Flame className="w-3.5 h-3.5 text-amber-400" />
-              Candle Items in Order ({order.items?.length || 0})
+              Sacred Items in Order ({order.items?.length || 0})
             </h4>
             <div className="rounded-2xl border border-stone-800 overflow-hidden divide-y divide-stone-800">
               {order.items?.map((item, idx) => (

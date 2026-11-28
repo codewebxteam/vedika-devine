@@ -65,7 +65,7 @@ export default function AdminInquiriesPage() {
             Wholesale & Carton Inquiries
           </h1>
           <p className="text-xs text-stone-400 mt-1">
-            Compact leads list • Real-time follow-up tracking • Click &ldquo;View Details&rdquo; for required candle types, buyer notes, and deal closure.
+            Compact leads list • Real-time follow-up tracking • Click &ldquo;View Details&rdquo; for required items, buyer notes, and deal closure.
           </p>
         </div>
 
@@ -123,7 +123,7 @@ export default function AdminInquiriesPage() {
 
                   const cleanPhone = inq.phone?.replace(/[^0-9]/g, "") || "";
                   const whatsappUrl = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(
-                    `Namaste ${inq.contactPerson || inq.businessName}, this is M/S RMPG Vedika Divine Home Industries regarding your wholesale candle inquiry.`
+                    `Namaste ${inq.contactPerson || inq.businessName}, this is M/S RMPG Vedika Divine Home Industries regarding your wholesale inquiry for sacred pooja samagri.`
                   )}`;
 
                   return (

@@ -41,7 +41,7 @@ export const CartDrawer: React.FC = () => {
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-5 h-5 text-amber-400" />
               <h2 className="text-lg font-serif font-bold text-white">
-                My Candle Bag ({totalItems})
+                My Sacred Bag ({totalItems})
               </h2>
             </div>
             <button

@@ -40,7 +40,7 @@ export const AdminSidebar: React.FC<{
       icon: <Layers className="w-4 h-4 text-purple-400" />,
     },
     {
-      name: "2. Candle Products",
+      name: "2. Sacred Products (पूजा सामग्री)",
       href: "/admin/products",
       icon: <Flame className="w-4 h-4 text-amber-400" />,
     },

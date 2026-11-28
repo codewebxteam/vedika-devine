@@ -87,7 +87,7 @@ export default function LoginPage() {
               Welcome Back
             </h1>
             <p className="text-xs sm:text-sm text-stone-300 mt-1.5 leading-relaxed max-w-sm mx-auto">
-              Sign in to track orders, access saved addresses, and enjoy member-only candle rewards.
+              Sign in to track orders, access saved addresses, and enjoy member rewards.
             </p>
           </div>
         </div>

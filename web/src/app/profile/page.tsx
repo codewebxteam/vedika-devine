@@ -119,7 +119,7 @@ export default function ProfilePage() {
             Customer Account Access
           </h2>
           <p className="text-xs text-stone-600 leading-relaxed">
-            Please sign in to view your profile, manage saved delivery addresses, and track your candle orders.
+            Please sign in to view your profile, manage saved delivery addresses, and track your sacred orders.
           </p>
           <div className="pt-2">
             <Link
@@ -234,7 +234,7 @@ export default function ProfilePage() {
               <span>Vedika Divine Member Account</span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              {profile?.displayName || "My Candle Account"}
+              {profile?.displayName || "My Account"}
             </h1>
             <p className="text-xs sm:text-sm text-stone-400">
               Manage personal profile, track live artisanal shipments, and update delivery addresses.
@@ -272,7 +272,7 @@ export default function ProfilePage() {
               </div>
               <div>
                 <h3 className="font-serif font-bold text-lg text-black">
-                  {profile?.displayName || "Valued Candle Lover"}
+                  {profile?.displayName || "Valued Customer"}
                 </h3>
                 <p className="text-xs text-stone-500 mt-0.5">{user.email}</p>
                 {profile?.phoneNumber && (
@@ -486,7 +486,7 @@ export default function ProfilePage() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-amber-100 gap-3">
                   <div>
                     <h3 className="font-serif font-bold text-xl text-black">
-                      My Candle Orders
+                      My Orders
                     </h3>
                     <p className="text-xs text-stone-500 mt-0.5">
                       Review your artisanal order records and live consignment tracking.
@@ -514,13 +514,13 @@ export default function ProfilePage() {
                       No Orders Placed Yet
                     </p>
                     <p className="text-xs text-stone-500 max-w-sm mx-auto">
-                      Explore our handcrafted scented candles and temple offerings.
+                      Explore our pure pooja samagri, ghee diyas, and divine temple offerings.
                     </p>
                     <Link
                       href="/shop"
                       className="inline-block px-6 py-2.5 rounded-full bg-black text-white text-xs font-semibold"
                     >
-                      Browse Candles
+                      Browse Sacred Products
                     </Link>
                   </div>
                 ) : (
@@ -669,7 +669,7 @@ export default function ProfilePage() {
                       No Addresses Saved Yet
                     </p>
                     <p className="text-xs text-stone-500 max-w-sm mx-auto">
-                      Add your shipping address for fast 1-click checkout on your next scented candle orders.
+                      Add your shipping address for fast 1-click checkout on your next orders.
                     </p>
                     <button
                       onClick={handleOpenAddAddress}

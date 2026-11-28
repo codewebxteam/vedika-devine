@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Vedika Divine",
+    "slug": "vedika-divine",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "vedikadivine",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0C0A09"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vedikadivine.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0C0A09"
+      },
+      "package": "com.vedikadivine.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

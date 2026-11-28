@@ -6,17 +6,18 @@ import { WishlistProvider } from "@/context/WishlistContext";
 import { StoreLayoutShell } from "@/components/layout/StoreLayoutShell";
 
 export const metadata: Metadata = {
-  title: "Vedika Divine Candles | Handcrafted Luxury Soy Wax & Scented Candles | Authorized Dealer",
+  title: "Vedika Divine | Sacred Pooja Samagri, Hawan, Cow Ghee Diyas, Dhoop & Divine Living",
   description:
-    "Explore pure handcrafted soy wax scented candles, luxury frosted amber glass jars, temple wax diyas, bubble pillars, and wholesale dealer bulk cartons across India.",
+    "Explore pure handcrafted sacred Pooja Samagri, Bhimseni camphor, pure cow ghee diyas, organic dhoop, hawan essentials, luxury candles, and wholesale dealer bulk cartons across India.",
   keywords: [
-    "vedika divine candles",
-    "candle dealer india",
-    "scented soy candles wholesale",
-    "mombatti wholesale manufacturer",
-    "luxury jar candles",
-    "bubble pillar candles",
-    "bulk candles for wedding gifting",
+    "vedika divine pooja samagri",
+    "pure pooja samagri online",
+    "bhimseni camphor wholesale",
+    "cow ghee diya batti",
+    "organic dhoop agarbatti",
+    "hawan samagri 51 herbs",
+    "luxury sacred candles",
+    "pooja kit wholesale dealer india",
   ],
   icons: {
     icon: [

@@ -27,13 +27,13 @@ export const DivineValues: React.FC = () => {
             <span>The Vedika Quality Guarantee</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-black tracking-tight">
-            Why Resellers, Decorators & Devotees{" "}
+            Why Retailers, Mandirs & Devotees{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-600 via-amber-400 to-amber-700">
-              Choose Our Candles
+              Choose Vedika Divine
             </span>
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-xl mx-auto leading-relaxed">
-            Every candle is hand-poured with sustainable plant soy wax, zero toxic paraffin, and therapeutic grade fragrances.
+            Every sacred pooja item is prepared with Vedic purity: pure Desi cow ghee, Bhimseni camphor, natural resins, and zero harmful chemicals.
           </p>
         </div>
 
@@ -45,10 +45,10 @@ export const DivineValues: React.FC = () => {
               <Sparkles className="w-6 h-6 fill-amber-400" />
             </div>
             <h3 className="font-serif font-bold text-base text-black mb-2 group-hover:text-amber-800 transition-colors">
-              100% Plant Soy Wax
+              100% Pure & Vedic
             </h3>
             <p className="text-xs text-stone-600 leading-relaxed font-normal">
-              Zero toxic petroleum paraffin. Pure biodegradable plant wax that burns up to 50% longer and completely clean.
+              Zero synthetic adulteration. Pure cow ghee, natural Bhimseni camphor, and sacred 51 herbs for divine aarti and hawan.
             </p>
           </div>
 
@@ -58,10 +58,10 @@ export const DivineValues: React.FC = () => {
               <Flame className="w-6 h-6 fill-amber-400" />
             </div>
             <h3 className="font-serif font-bold text-base text-black mb-2 group-hover:text-amber-800 transition-colors">
-              Soot-Free Clean Burn
+              Soot-Free Sacred Flame
             </h3>
             <p className="text-xs text-stone-600 leading-relaxed font-normal">
-              Equipped with lead-free braided cotton and crackling FSC-certified wood wicks for an even melt pool without black smoke.
+              Equipped with pure cotton wicks and natural wax for a clean, peaceful burn that leaves zero black soot on mandir walls.
             </p>
           </div>
 
@@ -71,10 +71,10 @@ export const DivineValues: React.FC = () => {
               <ShieldCheck className="w-6 h-6 text-amber-400" />
             </div>
             <h3 className="font-serif font-bold text-base text-black mb-2 group-hover:text-amber-800 transition-colors">
-              Rich Fragrance Throw
+              Divine Temple Aroma
             </h3>
             <p className="text-xs text-stone-600 leading-relaxed font-normal">
-              High fragrance load of 8-10% with IFRA certified essential oils ensuring strong hot and cold throw that fills entire rooms.
+              Natural Guggal, Loban, Sandalwood, and botanical extracts providing a holy temple atmosphere that purifies the entire household.
             </p>
           </div>
 

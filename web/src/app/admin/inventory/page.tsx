@@ -159,7 +159,7 @@ export default function AdminInventoryPage() {
             Inventory & Packaging Management
           </h1>
           <p className="text-xs text-stone-400 mt-1">
-            Quickly adjust stock levels (+/-), toggle out-of-stock items, manage single jar vs master carton bulk quantities, or edit candle details.
+            Quickly adjust stock levels (+/-), toggle out-of-stock items, manage single jar vs master carton bulk quantities, or edit product details.
           </p>
         </div>
 
@@ -184,7 +184,7 @@ export default function AdminInventoryPage() {
             className="px-5 py-2.5 rounded-2xl bg-amber-600 hover:bg-amber-500 text-stone-950 text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md shadow-amber-950/60 transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
-            <span>Add New Candle</span>
+            <span>Add New Product</span>
           </Link>
         </div>
       </div>
@@ -286,7 +286,7 @@ export default function AdminInventoryPage() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search candle name, carton, wax..."
+            placeholder="Search product name, carton, category..."
             className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-stone-900 border border-stone-800 text-xs text-stone-100 placeholder-stone-500 focus:outline-hidden focus:border-amber-500"
           />
         </div>
@@ -324,7 +324,7 @@ export default function AdminInventoryPage() {
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="bg-stone-950/70 border-b border-stone-800 text-stone-400 font-semibold uppercase tracking-wider text-[10px]">
-                <th className="py-3.5 px-4">Candle Product</th>
+                <th className="py-3.5 px-4">Sacred Product</th>
                 <th className="py-3.5 px-3">Packaging & Carton</th>
                 <th className="py-3.5 px-3">Price & Wholesale</th>
                 <th className="py-3.5 px-4 text-center">Live Stock Control</th>
@@ -337,7 +337,7 @@ export default function AdminInventoryPage() {
                 <tr>
                   <td colSpan={6} className="py-16 text-center text-stone-400">
                     <div className="w-8 h-8 border-3 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-                    Loading candle inventory...
+                    Loading inventory catalog...
                   </td>
                 </tr>
               ) : filteredProducts.length === 0 ? (

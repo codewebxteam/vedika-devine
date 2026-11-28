@@ -165,7 +165,7 @@ export default function TrackOrderPage() {
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight">
-            Track Your Artisanal Candles
+            Track Your Sacred Order
           </h1>
 
           <p className="text-xs sm:text-sm text-stone-300 max-w-xl mx-auto leading-relaxed">

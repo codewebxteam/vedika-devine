@@ -117,7 +117,7 @@ export default function ProductDetailPage() {
       <div className="py-28 text-center space-y-4 bg-[#FFFDF9] min-h-screen">
         <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
         <p className="font-serif text-sm font-semibold text-black">
-          Loading artisanal candle formulation...
+          Loading product details...
         </p>
       </div>
     );
@@ -129,15 +129,15 @@ export default function ProductDetailPage() {
         <div className="w-16 h-16 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center mx-auto mb-4">
           <Flame className="w-8 h-8 fill-amber-700" />
         </div>
-        <h2 className="text-3xl font-serif font-bold text-black mb-2">Candle Creation Not Found</h2>
+        <h2 className="text-3xl font-serif font-bold text-black mb-2">Product Not Found</h2>
         <p className="text-xs sm:text-sm text-stone-600 mb-6">
-          The requested handcrafted candle formulation could not be retrieved. It may have been archived.
+          The requested sacred item could not be retrieved. It may have been archived.
         </p>
         <Link
           href="/shop"
           className="px-8 py-3 rounded-full bg-black text-white font-semibold text-xs hover:bg-stone-900 shadow-md"
         >
-          Return to Candle Catalog
+          Return to Catalog
         </Link>
       </div>
     );
@@ -154,7 +154,7 @@ export default function ProductDetailPage() {
             <Check className="w-4 h-4" />
           </div>
           <div>
-            <p className="text-xs font-bold text-amber-300">Added to Your Candle Bag!</p>
+            <p className="text-xs font-bold text-amber-300">Added to Your Bag!</p>
             <p className="text-[10px] text-stone-300">{product.name} (x{quantity})</p>
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function ProductDetailPage() {
         <nav className="flex items-center gap-2 text-xs text-stone-600 mb-8 overflow-x-auto pb-1">
           <Link href="/" className="hover:text-amber-800 shrink-0">Home</Link>
           <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
-          <Link href="/shop" className="hover:text-amber-800 shrink-0">Candles</Link>
+          <Link href="/shop" className="hover:text-amber-800 shrink-0">Shop</Link>
           <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
           <Link href={`/shop?category=${product.categorySlug}`} className="hover:text-amber-800 shrink-0">
             {product.category}
@@ -368,7 +368,7 @@ export default function ProductDetailPage() {
                       className="px-6 py-4 rounded-full bg-black hover:bg-stone-900 text-white font-bold text-xs uppercase tracking-wider shadow-xl hover:shadow-2xl transition-all hover:scale-102 flex items-center justify-center gap-2 cursor-pointer border border-black"
                     >
                       <ShoppingBag className="w-4 h-4 text-amber-400" />
-                      <span>Add to Candle Bag</span>
+                      <span>Add to Bag</span>
                     </button>
 
                     <button
@@ -466,11 +466,11 @@ export default function ProductDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-7 bg-white p-8 rounded-3xl border border-amber-200 shadow-sm space-y-4">
               <h3 className="font-serif font-bold text-xl text-black">
-                About This Handcrafted Candle
+                About This Sacred Offering
               </h3>
               <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-normal">
                 {product.description ||
-                  "Hand-poured in small batches at Turkpatti Bazar, Kushinagar, this luxury candle features 100% natural soy wax blended with pure essential oils. Designed to burn cleanly without black soot or toxic paraffin fumes, creating an aura of serenity, positivity, and warmth."}
+                  "Crafted with devotion at Turkpatti Bazar, Kushinagar, this sacred offering features authentic Vedic ingredients and pure botanicals for auspicious temple and home devotion."}
               </p>
 
               <div className="pt-4 border-t border-amber-100">
@@ -487,7 +487,7 @@ export default function ProductDetailPage() {
 
             <div className="lg:col-span-5 bg-white p-8 rounded-3xl border border-amber-200 shadow-sm space-y-3">
               <h3 className="font-serif font-bold text-lg text-black mb-4 border-b border-amber-100 pb-2">
-                Candle Specifications
+                Product Specifications
               </h3>
               <div className="divide-y divide-amber-100 text-xs">
                 <div className="py-2.5 flex justify-between">
@@ -537,7 +537,7 @@ export default function ProductDetailPage() {
             {/* Write a Review Form */}
             <form onSubmit={handleReviewSubmit} className="p-6 rounded-2xl bg-amber-50/60 border border-amber-200 space-y-4">
               <h4 className="font-serif font-bold text-sm text-black">
-                Share Your Candle Experience
+                Share Your Sacred Experience
               </h4>
               <div className="flex items-center gap-2">
                 <span className="text-xs text-stone-600 font-medium">Rating:</span>

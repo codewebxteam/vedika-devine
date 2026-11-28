@@ -64,7 +64,7 @@ export default function RegisterPage() {
               </h1>
             </div>
             <p className="text-xs text-stone-500">
-              Join the Vedika Divine Candles family to unlock member discounts, order tracking & fast checkout.
+              Join the Vedika Divine family to unlock member discounts, order tracking & fast checkout.
             </p>
           </div>
 
@@ -163,7 +163,7 @@ export default function RegisterPage() {
             </p>
             <ul className="text-[11px] text-stone-600 space-y-1 list-disc list-inside">
               <li>Instant 10% discount coupon on your first retail purchase</li>
-              <li>Early access to seasonal candle collection launches</li>
+              <li>Early access to seasonal pooja collection launches</li>
               <li>Saved delivery addresses for 1-click checkout</li>
             </ul>
           </div>

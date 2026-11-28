@@ -168,7 +168,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Scented Soy Candles, Temple Akhand Diya..."
+              placeholder="e.g. Bhimseni Camphor, Pure Ghee Diyas, Dhoop & Agarbatti..."
               className="w-full px-4 py-3 rounded-xl bg-stone-950 border border-stone-800 text-stone-100 placeholder-stone-600 focus:outline-hidden focus:border-amber-500 text-sm font-medium"
             />
           </div>

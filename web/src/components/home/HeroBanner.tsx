@@ -165,18 +165,18 @@ export const HeroBanner: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 items-center">
           {/* Left Column: Typography, Actions & Badges */}
           <div className="lg:col-span-6 space-y-4 sm:space-y-6 text-left pt-1 sm:pt-4">
-            {/* Pill Capsule: Premium Scented Candles */}
+            {/* Pill Capsule: Sacred Pooja Samagri & Divine Living */}
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-amber-400/90 bg-linear-to-r from-amber-50/80 via-white to-amber-50/80 text-black text-[11px] sm:text-xs font-semibold tracking-wider uppercase shadow-xs">
               <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500 fill-amber-400" />
-              <span>Premium Scented Candles</span>
+              <span>Sacred Pooja Samagri & Divine Living</span>
             </div>
 
-            {/* Main Headline: Light Up Your Moments (Responsive sizing for mobile & desktop) */}
+            {/* Main Headline: Light Up Your Moments */}
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-black leading-[1.08] sm:leading-[1.06]">
-              Light Up <br />
+              Sanctify <br />
               <span className="relative inline-block text-transparent bg-clip-text bg-linear-to-r from-amber-600 via-amber-400 to-amber-700">
-                Your Moments
-                {/* Golden curved swoosh accent SVG under "Your Moments" */}
+                Your Mandir
+                {/* Golden curved swoosh accent SVG under "Your Mandir" */}
                 <svg
                   className="absolute -bottom-1.5 sm:-bottom-3.5 left-0 w-full h-2.5 sm:h-4.5 text-amber-500"
                   viewBox="0 0 250 15"
@@ -195,7 +195,7 @@ export const HeroBanner: React.FC = () => {
 
             {/* Subtitle */}
             <p className="text-stone-700 text-xs sm:text-sm lg:text-base leading-relaxed max-w-md font-normal">
-              Premium candles to create a calm, cozy and positive vibe.
+              100% Pure Bhimseni Kapur, Consecrated Cow Ghee Diyas, 51-Herb Hawan Samagri, Bamboo-Free Dhoop & Sacred Fragrances.
             </p>
 
             {/* Action Buttons: Pure Black Pill & White/Gold Play Button */}
@@ -231,7 +231,7 @@ export const HeroBanner: React.FC = () => {
                     100%
                   </p>
                   <p className="text-[9px] sm:text-[10px] text-stone-600 font-medium">
-                    Natural Wax
+                    Pure & Vedic
                   </p>
                 </div>
               </div>
@@ -389,7 +389,7 @@ export const HeroBanner: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-serif font-bold text-white text-base sm:text-lg">
-                  Handcrafted Candle Making at Kushinagar
+                  Sacred Samagri & Divine Living at Kushinagar
                 </h3>
                 <p className="text-[11px] sm:text-xs text-amber-300">
                   M/S RMPG Vedika Divine Home Industries
@@ -400,7 +400,7 @@ export const HeroBanner: React.FC = () => {
             <div className="aspect-16/9 rounded-2xl overflow-hidden bg-stone-950 border border-amber-900/40 flex items-center justify-center relative">
               <img
                 src="/images/hero.png"
-                alt="Candle Crafting Preview"
+                alt="Sacred Crafting Preview"
                 className="w-full h-full object-cover opacity-60"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 text-center space-y-2 sm:space-y-3 bg-black/50">
@@ -409,10 +409,10 @@ export const HeroBanner: React.FC = () => {
                 </div>
                 <div>
                   <p className="font-serif font-bold text-white text-sm sm:text-base">
-                    Pure Soy Wax & Essential Oil Pouring
+                    Pure Vedic Purity & Temple Aromatherapy
                   </p>
                   <p className="text-[10px] sm:text-xs text-stone-300 max-w-sm mt-1">
-                    Small-batch artisanal candles made with 100% pure organic wax, lead-free wicks, and long-lasting fragrances.
+                    Small-batch sacred essentials made with 100% pure Bhimseni kapur, natural cow ghee, herbal dhoop, and divine temple fragrances.
                   </p>
                 </div>
               </div>
@@ -424,7 +424,7 @@ export const HeroBanner: React.FC = () => {
                 onClick={() => setVideoModalOpen(false)}
                 className="px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-colors shadow-md"
               >
-                Shop Vanilla Dream Candle
+                Explore Sacred Samagri
               </Link>
             </div>
           </div>

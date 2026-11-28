@@ -120,7 +120,7 @@ export default function AdminDashboardPage() {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold">
               <Flame className="w-3.5 h-3.5 fill-amber-400" />
-              <span>Candle Dealer & Retail Management Hub</span>
+              <span>Sacred Pooja Samagri & Dealer Hub</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-wide">
               M/S RMPG VEDIKA DIVINE HOME INDUSTRIES
@@ -155,7 +155,7 @@ export default function AdminDashboardPage() {
               className="px-4 py-2.5 rounded-2xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md shadow-amber-950/60 transition-colors"
             >
               <Plus className="w-4 h-4" />
-              <span>Add Candle</span>
+              <span>Add Product</span>
             </Link>
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function AdminDashboardPage() {
                 1. श्रेणी बनाएं (Categories)
               </h3>
               <p className="text-[11px] text-stone-400 leading-relaxed">
-                Nayi candle category banayein, ImageKit se cover photo upload karein, name aur icon dein.
+                Nayi pooja samagri category banayein, ImageKit se cover photo upload karein, name aur icon dein.
               </p>
             </div>
             <div className="pt-2 flex items-center gap-2">
@@ -223,10 +223,10 @@ export default function AdminDashboardPage() {
                 <Flame className="w-5 h-5 text-amber-400" />
               </div>
               <h3 className="font-serif font-bold text-white text-base group-hover:text-amber-300 transition-colors">
-                2. मोमबत्ती उत्पाद जोड़ें (Products)
+                2. पूजा उत्पाद जोड़ें (Sacred Products)
               </h3>
               <p className="text-[11px] text-stone-400 leading-relaxed">
-                Step 1 ki categories chun kar naye candle products add karein, single jar & master carton rate bharein.
+                Step 1 ki categories chun kar naye pooja products add karein, single jar & master carton rate bharein.
               </p>
             </div>
             <div className="pt-2 flex items-center gap-2">
@@ -234,7 +234,7 @@ export default function AdminDashboardPage() {
                 href="/admin/products"
                 className="w-full text-center py-2 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-xs transition-colors shadow-md"
               >
-                + Add / Manage Candles
+                + Add / Manage Products
               </Link>
             </div>
           </div>
@@ -312,10 +312,10 @@ export default function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* Candle Catalog */}
+        {/* Product Catalog */}
         <div className="bg-stone-900 border border-stone-800 rounded-3xl p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-stone-400">Candle Catalog</span>
+            <span className="text-xs font-semibold text-stone-400">Product Catalog</span>
             <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center">
               <Flame className="w-4 h-4" />
             </div>
@@ -325,7 +325,7 @@ export default function AdminDashboardPage() {
               {products.length}
             </h3>
             <p className="text-[11px] text-stone-500 mt-1">
-              Active candle listings & cartons
+              Active product listings & cartons
             </p>
           </div>
         </div>
@@ -413,7 +413,7 @@ export default function AdminDashboardPage() {
                         </span>
                       </p>
                       <p className="text-[10px] text-stone-500">
-                        {order.items?.length || 0} candle items • {formatCurrency(order.total)} •{" "}
+                        {order.items?.length || 0} items • {formatCurrency(order.total)} •{" "}
                         {order.paymentMethod || "COD"}
                       </p>
                     </div>
@@ -524,8 +524,8 @@ export default function AdminDashboardPage() {
               <Flame className="w-5 h-5" />
             </div>
             <div>
-              <p className="font-bold text-white text-xs">Candle Products</p>
-              <p className="text-[10px] text-stone-500">Add, edit scents, burn time, wax specs</p>
+              <p className="font-bold text-white text-xs">Product Catalog</p>
+              <p className="text-[10px] text-stone-500">Add, edit items, specs, carton rates</p>
             </div>
           </div>
           <ArrowRight className="w-4 h-4 text-stone-500 group-hover:text-amber-400 transition-colors" />

@@ -24,7 +24,7 @@ export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [subject, setSubject] = useState("Candle Order & Product Inquiry");
+  const [subject, setSubject] = useState("Pooja Samagri Order & Product Inquiry");
   const [message, setMessage] = useState("");
   const [whatsappUrl, setWhatsappUrl] = useState("");
 
@@ -40,7 +40,7 @@ export default function ContactPage() {
 
     // Beautifully formatted WhatsApp message with clean markdown & emojis
     const wpMessage =
-`✨ *NEW INQUIRY — VEDIKA DIVINE LUXURY CANDLES* ✨
+`✨ *NEW INQUIRY — VEDIKA DIVINE SACRED POOJA SAMAGRI* ✨
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 👤 *Customer Name:* ${name.trim()}
 📞 *Phone / WhatsApp:* ${phone.trim() || "Not provided"}
@@ -97,7 +97,7 @@ export default function ContactPage() {
             Contact <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-200 to-amber-500">Vedika Divine</span>
           </h1>
           <p className="text-xs sm:text-sm text-stone-300 max-w-md mx-auto leading-relaxed">
-            Questions regarding candle orders, custom corporate fragrances, or regional dealership? Our Kushinagar team is here to assist.
+            Questions regarding sacred pooja samagri orders, custom gifting hampers, or regional dealership? Our Kushinagar team is here to assist.
           </p>
         </div>
       </section>
@@ -287,7 +287,7 @@ export default function ContactPage() {
                       onChange={(e) => setSubject(e.target.value)}
                       className="w-full p-3.5 rounded-xl border border-stone-300 text-black focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500/20 bg-stone-50/50"
                     >
-                      <option value="Candle Order & Product Inquiry">Candle Order & Product Inquiry</option>
+                      <option value="Pooja Samagri Order & Product Inquiry">Pooja Samagri Order & Product Inquiry</option>
                       <option value="Wholesale Dealership / Distributor Inquiry">Wholesale Dealership / Distributor</option>
                       <option value="Corporate Gifting & Custom Fragrance">Corporate Gifting & Custom Fragrance</option>
                       <option value="Bulk Wedding & Event Favors">Bulk Wedding & Event Favors</option>
@@ -305,7 +305,7 @@ export default function ContactPage() {
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Tell us what you are looking for (e.g. need 50 pieces scented candles for an upcoming event, or delivery timeline query)..."
+                    placeholder="Tell us what you are looking for (e.g. need wholesale cartons of Bhimseni kapur, pure cow ghee diyas, or order query)..."
                     className="w-full p-3.5 rounded-xl border border-stone-300 text-black focus:border-amber-500 focus:outline-hidden focus:ring-2 focus:ring-amber-500/20 bg-stone-50/50"
                   />
                 </div>

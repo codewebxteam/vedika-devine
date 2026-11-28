@@ -19,7 +19,7 @@ import { ProductGrid } from "@/components/product/ProductGrid";
 import { getFeaturedProducts, getBestSellers } from "@backend/index";
 
 export default async function HomePage() {
-  const featuredCandles = await getFeaturedProducts(8);
+  const featuredProducts = await getFeaturedProducts(8);
   const bestSellers = await getBestSellers(4);
 
   return (
@@ -109,46 +109,49 @@ export default async function HomePage() {
 
               {/* Temple Akhand Mood */}
               <Link
-                href="/shop?category=pooja-temple-candles"
+                href="/shop?category=pooja-hawan-samagri"
                 className="group p-6 rounded-3xl bg-white border border-amber-200/90 hover:border-amber-400 hover:shadow-xl hover:shadow-amber-900/10 transition-all text-center space-y-2.5 hover:-translate-y-1"
               >
                 <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center mx-auto text-2xl group-hover:scale-110 transition-transform">
                   🪔
                 </div>
                 <h3 className="font-serif font-bold text-sm sm:text-base text-black group-hover:text-amber-800 transition-colors">
-                  Devotional Temple Akhand
+                  Sacred Pooja & Hawan
                 </h3>
-                <p className="text-xs text-stone-500">Brass Urli & Cow Ghee Wax</p>
+                <p className="text-xs text-stone-500">Bhimseni Kapur, Ghee & 51 Herbs</p>
                 <span className="text-[11px] font-bold text-amber-700 underline block pt-1 group-hover:text-amber-900">
-                  Explore Temple Candles →
+                  Explore Sacred Pooja Samagri →
                 </span>
               </Link>
             </div>
           </div>
 
-          {/* 3B. Featured Luxury Candle Collections */}
+          {/* 3B. Featured Sacred Pooja & Fragrance Collections */}
           <div>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4 border-t border-amber-200/60 pt-10">
               <div>
                 <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700 uppercase tracking-widest">
                   <Flame className="w-4 h-4 fill-amber-400" />
-                  <span>Artisanal Masterpieces</span>
+                  <span>Vedic Purity & Consecration</span>
                 </div>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-black mt-1">
-                  Featured Luxury Candle Collections
+                  Featured Sacred Pooja & Divine Collections
                 </h2>
+                <p className="text-xs sm:text-sm text-stone-600 mt-1">
+                  Pure Bhimseni Kapur, Desi Cow Ghee Diya Batti, Bamboo-less Dhoop & Temple Fragrances
+                </p>
               </div>
               <Link
                 href="/shop"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-black hover:bg-stone-900 text-white font-medium text-xs shadow-md hover:scale-105 transition-all cursor-pointer"
               >
-                <span>View Full Catalog</span>
+                <span>View Full Sacred Catalog</span>
                 <ArrowRight className="w-4 h-4 text-amber-400" />
               </Link>
             </div>
 
             {/* Light-Themed Product Grid */}
-            <ProductGrid products={featuredCandles} theme="light" />
+            <ProductGrid products={featuredProducts} theme="light" />
           </div>
         </div>
       </section>
@@ -175,7 +178,7 @@ export default async function HomePage() {
                 </h3>
 
                 <p className="text-xs sm:text-sm text-stone-300 leading-relaxed max-w-2xl font-normal">
-                  Every Vedika Divine gold-trimmed flower candle is hand-poured with pure botanical soy wax and paired with our signature gold-embossed presentation box, matching aesthetic matchsticks, and a personalized blessing card.
+                  Every Vedika Divine sacred pooja hamper and divine fragrance gift set is prepared with pure Vedic botanicals, presented in our signature gold-embossed keepsake box with personalized blessing cards.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -183,11 +186,11 @@ export default async function HomePage() {
                     href="/shop"
                     className="px-8 py-3.5 rounded-full bg-linear-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black font-bold text-xs uppercase tracking-wider shadow-xl transition-all hover:scale-105 active:scale-95"
                   >
-                    Order Luxury Gift Candles
+                    Order Sacred Gift Sets
                   </Link>
                   <span className="text-xs text-amber-300 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                    Free Premium Gift Box on Orders Above ₹999
+                    Free Auspicious Presentation Box on Orders Above ₹999
                   </span>
                 </div>
               </div>
@@ -240,7 +243,7 @@ export default async function HomePage() {
                 Most Loved <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-200 to-amber-500">Bestsellers</span>
               </h2>
               <p className="text-xs sm:text-sm text-stone-400 mt-1 max-w-xl">
-                The top-rated aromatherapy candles that our customers keep ordering again and again.
+                The top-rated sacred pooja samagri, ghee wicks, and divine aromas that our customers reorder continuously.
               </p>
             </div>
 
@@ -248,7 +251,7 @@ export default async function HomePage() {
               href="/shop"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-amber-400 text-amber-300 hover:text-black font-semibold text-xs border border-amber-400/40 hover:border-amber-400 transition-all duration-300 group shadow-md"
             >
-              <span>Explore All Candles</span>
+              <span>Explore All Pooja Samagri</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

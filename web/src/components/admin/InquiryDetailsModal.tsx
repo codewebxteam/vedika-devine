@@ -41,7 +41,7 @@ export const InquiryDetailsModal: React.FC<InquiryDetailsModalProps> = ({
 
   const cleanPhone = inquiry.phone?.replace(/[^0-9]/g, "") || "";
   const whatsappUrl = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(
-    `Namaste ${inquiry.contactPerson || inquiry.businessName}, this is M/S RMPG Vedika Divine Home Industries regarding your wholesale inquiry for candles.`
+    `Namaste ${inquiry.contactPerson || inquiry.businessName}, this is M/S RMPG Vedika Divine Home Industries regarding your wholesale inquiry for sacred pooja samagri.`
   )}`;
 
   const handleDelete = async () => {
@@ -169,11 +169,11 @@ export const InquiryDetailsModal: React.FC<InquiryDetailsModalProps> = ({
             </div>
           </div>
 
-          {/* Candle Varieties Needed */}
+          {/* Products Needed */}
           <div className="p-4 rounded-2xl bg-stone-950/60 border border-stone-800 space-y-2">
             <span className="text-[10px] uppercase font-bold text-stone-500 tracking-wider flex items-center gap-1.5">
               <Package className="w-3.5 h-3.5 text-amber-400" />
-              Candle Varieties Required
+              Sacred Products / Varieties Required
             </span>
             <div className="flex flex-wrap gap-2 pt-1">
               {inquiry.candleTypesNeeded?.length ? (
@@ -182,7 +182,7 @@ export const InquiryDetailsModal: React.FC<InquiryDetailsModalProps> = ({
                     key={idx}
                     className="px-2.5 py-1 rounded-xl bg-stone-800 border border-stone-700 text-stone-200 text-xs font-semibold"
                   >
-                    🕯️ {type}
+                    ✨ {type}
                   </span>
                 ))
               ) : (

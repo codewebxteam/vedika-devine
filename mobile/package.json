@@ -1,14 +1,36 @@
 {
   "name": "@vedika/mobile",
+  "main": "index.js",
   "version": "1.0.0",
   "private": true,
-  "description": "Vedika Divine Cross-Platform Mobile App (React Native / Expo) utilizing shared @vedika/backend",
+  "description": "Vedika Divine Official Luxury Candles E-Commerce Mobile App (Android & iOS)",
   "scripts": {
-    "start": "echo 'Run: npx create-expo-app@latest . --template blank-typescript or expo start'",
-    "android": "echo 'Run on Android device/emulator'",
-    "ios": "echo 'Run on iOS simulator'"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
   "dependencies": {
-    "@vedika/backend": "file:../backend"
+    "@react-native-async-storage/async-storage": "^2.1.0",
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/native-stack": "^6.9.26",
+    "@vedika/backend": "file:../backend",
+    "expo": "~58.0.26",
+    "expo-linear-gradient": "~58.0.4",
+    "expo-status-bar": "~58.0.5",
+    "firebase": "^11.0.0",
+    "lucide-react-native": "^0.460.0",
+    "react": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-safe-area-context": "^5.0.0",
+    "react-native-screens": "^4.1.0",
+    "react-native-svg": "^15.9.0",
+    "vedika-devine": "file:.."
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.0",
+    "@types/react": "~19.0.0",
+    "typescript": "^5.3.3"
   }
 }

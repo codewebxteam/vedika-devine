@@ -391,7 +391,7 @@ export default function DealerDashboardPage() {
     setBookingError(null);
 
     if (basketItems.length === 0) {
-      setBookingError("Kripya kam se kam ek candle ya carton select karein.");
+      setBookingError("Kripya kam se kam ek product ya carton select karein.");
       return;
     }
     if (
@@ -592,7 +592,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
               Authorized Dealer Access Required
             </h2>
             <p className="text-xs text-stone-400 mt-2">
-              This portal is exclusively reserved for approved wholesale candle dealers & retail partners.
+              This portal is exclusively reserved for approved wholesale dealers & retail partners.
             </p>
           </div>
           <div className="flex flex-col gap-2.5 pt-2">
@@ -929,7 +929,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                               {ord.shopOwnerName} • {ord.shopPhone} • {ord.shippingAddress?.city}
                             </p>
                             <p className="text-[10px] text-stone-500">
-                              {formatDate(ord.createdAt)} • {ord.items.length} candle items
+                              {formatDate(ord.createdAt)} • {ord.items.length} items
                             </p>
                           </div>
 
@@ -1055,7 +1055,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                   Place Order on Behalf of Local Retail Shop
                 </h1>
                 <p className="text-xs text-stone-300 max-w-2xl leading-relaxed">
-                  Dukan ka naam aur dispatch address dalein, candles select karein aur COD order lagayein. Company dukan par maal bhejegi aur aapko <strong>{commissionRate}% Commission</strong> credit hoga.
+                  Dukan ka naam aur dispatch address dalein, products select karein aur COD order lagayein. Company dukan par maal bhejegi aur aapko <strong>{commissionRate}% Commission</strong> credit hoga.
                 </p>
               </div>
 
@@ -1128,7 +1128,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                   </div>
                   <a
                     href={`https://wa.me/91${lastBookedOrder.shopPhone?.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-                      `Namaste ${lastBookedOrder.shopOwnerName}, aapki dukan "${lastBookedOrder.shopName}" ke liye Vedika Divine premium candles ka order book ho gaya hai!\n\nOrder #${lastBookedOrder.orderNumber}\nTotal Bill: ₹${lastBookedOrder.total} (COD)\nKushinagar manufacturing factory se dispatch hoga. Dhanyawad!`
+                      `Namaste ${lastBookedOrder.shopOwnerName}, aapki dukan "${lastBookedOrder.shopName}" ke liye Vedika Divine sacred pooja samagri ka order book ho gaya hai!\n\nOrder #${lastBookedOrder.orderNumber}\nTotal Bill: ₹${lastBookedOrder.total} (COD)\nKushinagar manufacturing factory se dispatch hoga. Dhanyawad!`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -1424,9 +1424,9 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                   {basketItems.length === 0 ? (
                     <div className="py-7 text-center text-stone-500 space-y-1">
                       <Store className="w-7 h-7 mx-auto text-stone-700" />
-                      <p className="text-xs text-stone-400 font-semibold">Koi candle select nahi ki gayi</p>
+                      <p className="text-xs text-stone-400 font-semibold">Koi product select nahi kiya gaya</p>
                       <p className="text-[11px] text-stone-600">
-                        Right side catalog se candle boxes add karein.
+                        Right side catalog se boxes add karein.
                       </p>
                     </div>
                   ) : (
@@ -1570,7 +1570,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                     <div>
                       <h3 className="font-bold text-white text-base flex items-center gap-2">
                         <Flame className="w-4 h-4 text-amber-400" />
-                        <span>Candles Catalog (Select for Dukan)</span>
+                        <span>Products Catalog (Select for Dukan)</span>
                       </h3>
                       <p className="text-xs text-stone-400">
                         Carton presets par click karke turant boxes add karein
@@ -1583,7 +1583,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                         type="text"
                         value={productSearch}
                         onChange={(e) => setProductSearch(e.target.value)}
-                        placeholder="Search candle name..."
+                        placeholder="Search product name..."
                         className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:border-amber-500 focus:outline-hidden"
                       />
                     </div>
@@ -1867,7 +1867,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                   {filteredSavedShops.map((shop) => {
                     const cleanPhone = (shop.shopPhone || "").replace(/[^0-9]/g, "");
                     const whatsappLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(
-                      `Namaste ${shop.shopOwnerName}, Vedika Divine candles factory order ke sambandh me sampark kar raha hu. Aapki dukan "${shop.shopName}" ke liye koi naya stock bhejna hai?`
+                      `Namaste ${shop.shopOwnerName}, Vedika Divine pooja samagri factory order ke sambandh me sampark kar raha hu. Aapki dukan "${shop.shopName}" ke liye koi naya stock bhejna hai?`
                     )}`;
                     const hasLastOrder = shop.lastOrderItems && shop.lastOrderItems.length > 0;
 
@@ -2557,7 +2557,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
             {/* Ordered Items List */}
             <div className="space-y-2 text-xs">
               <span className="text-[10px] uppercase font-bold text-stone-400 block tracking-wider">
-                Ordered Candle Items ({inspectOrder.items.reduce((s, i) => s + i.quantity, 0)} pcs)
+                Ordered Items ({inspectOrder.items.reduce((s, i) => s + i.quantity, 0)} pcs)
               </span>
               <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1">
                 {inspectOrder.items.map((it, idx) => (
@@ -2680,7 +2680,7 @@ Dispatch Instructions: ${wsNotes.trim() || "Priority direct shipment from Kushin
                 </div>
                 <div className="flex justify-between">
                   <span className="text-stone-400">Total Pieces in this Order:</span>
-                  <span className="font-bold text-amber-400">{cartonQty * 24} Candles</span>
+                  <span className="font-bold text-amber-400">{cartonQty * 24} Items</span>
                 </div>
                 <div className="flex justify-between border-t border-stone-900 pt-1 text-sm font-bold text-white">
                   <span>Estimated Total Amount:</span>

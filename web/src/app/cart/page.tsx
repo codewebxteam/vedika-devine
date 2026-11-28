@@ -29,7 +29,7 @@ export default function CartPage() {
     if (code === "VEDIKA10" || code === "DIVINE10") {
       const discount = Math.round(subtotal * 0.1);
       setAppliedDiscount(discount);
-      setCouponMessage("✨ 10% Luxury Candle Discount Applied!");
+      setCouponMessage("✨ 10% Sacred Blessing Discount Applied!");
     } else if (code === "VEDIKA100" && subtotal >= 999) {
       setAppliedDiscount(100);
       setCouponMessage("✨ ₹100 Aroma Blessing Coupon Applied!");
@@ -53,17 +53,17 @@ export default function CartPage() {
             <ShoppingBag className="w-10 h-10" />
           </div>
           <h1 className="font-serif text-3xl font-bold text-black">
-            Your Candle Bag is Empty
+            Your Sacred Bag is Empty
           </h1>
           <p className="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-sm mx-auto">
-            Discover our pure soy wax candles, artisanal aromatherapy jars, temple Akhand diyas, and bubble pillars.
+            Discover our pure Bhimseni camphor, natural cow ghee diya batti, herbal dhoop, hawan essentials, and divine living items.
           </p>
           <div className="pt-2">
             <Link
               href="/shop"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-black hover:bg-stone-900 text-white font-bold text-xs uppercase tracking-wider shadow-xl transition-transform hover:scale-102 cursor-pointer"
             >
-              <span>Explore Candle Collections</span>
+              <span>Explore Sacred Collections</span>
               <ArrowRight className="w-4 h-4 text-amber-400" />
             </Link>
           </div>
@@ -85,10 +85,10 @@ export default function CartPage() {
               <span>Checkout Bag</span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              My Luxury Candle Cart
+              My Sacred Cart
             </h1>
             <p className="text-xs sm:text-sm text-stone-400">
-              Review your artisanal candle selections before safe doorstep delivery.
+              Review your pooja samagri selections before safe doorstep delivery.
             </p>
           </div>
 

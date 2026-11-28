@@ -13,7 +13,7 @@ export const TopAnnouncement: React.FC = () => {
         <div className="flex items-center gap-2 font-medium tracking-wide">
           <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400 animate-pulse" />
           <span>
-            ✨ <strong>M/S RMPG Vedika Divine:</strong> Handcrafted 100% Pure Soy Candles | Free Delivery above {APP_CONFIG.CURRENCY}{APP_CONFIG.FREE_SHIPPING_THRESHOLD}
+            ✨ <strong>M/S RMPG Vedika Divine:</strong> Pure Sacred Pooja Samagri, Ghee Diyas & Hawan Essentials | Free Delivery above {APP_CONFIG.CURRENCY}{APP_CONFIG.FREE_SHIPPING_THRESHOLD}
           </span>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-amber-200">

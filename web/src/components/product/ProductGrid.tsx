@@ -9,7 +9,7 @@ export const ProductGrid: React.FC<{
 }> = ({
   products,
   theme = "light",
-  emptyMessage = "No sacred candle items found matching your selection.",
+  emptyMessage = "No sacred items found matching your selection.",
 }) => {
   if (products.length === 0) {
     return (

@@ -34,7 +34,7 @@ export default function WishlistPage() {
       <div className="py-28 text-center space-y-4 bg-[#FFFDF9] min-h-screen">
         <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
         <p className="font-serif text-sm font-semibold text-black">
-          Loading your saved candles...
+          Loading your sacred wishlist...
         </p>
       </div>
     );
@@ -51,14 +51,14 @@ export default function WishlistPage() {
             Your Wishlist is Empty
           </h1>
           <p className="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-sm mx-auto">
-            Save your favorite handcrafted scented candles, luxury frosted jars, and temple diyas here to purchase later.
+            Save your favorite sacred pooja essentials, pure Bhimseni camphor, cow ghee diyas, and divine fragrances here to purchase later.
           </p>
           <div className="pt-2">
             <Link
               href="/shop"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-black hover:bg-stone-900 text-white font-bold text-xs uppercase tracking-wider shadow-xl transition-transform hover:scale-102 cursor-pointer"
             >
-              <span>Explore Candle Collections</span>
+              <span>Explore Sacred Collections</span>
               <ArrowRight className="w-4 h-4 text-amber-400" />
             </Link>
           </div>
@@ -83,7 +83,7 @@ export default function WishlistPage() {
               My Saved Wishlist ({products.length})
             </h1>
             <p className="text-xs sm:text-sm text-stone-400">
-              Your handpicked favorite aromatherapy candles ready to be added to cart.
+              Your handpicked sacred pooja essentials & divine fragrances ready to be added to cart.
             </p>
           </div>
 
@@ -91,7 +91,7 @@ export default function WishlistPage() {
             href="/shop"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs shadow-md hover:bg-amber-100 transition-all"
           >
-            <span>Browse More Candles</span>
+            <span>Browse More Products</span>
             <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
           </Link>
         </div>

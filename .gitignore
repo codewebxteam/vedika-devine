@@ -40,3 +40,13 @@ next-env.d.ts
 # Scratch / Temp
 scratch/
 .gemini/
+
+# Expo & Mobile
+.expo/
+mobile/.expo/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*

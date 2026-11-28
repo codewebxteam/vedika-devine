@@ -42,7 +42,7 @@ export default function OrderSuccessPage() {
             Order Confirmed & Received
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black mt-3">
-            Thank You! Your Candle Order is Placed
+            Thank You! Your Sacred Order is Placed
           </h1>
           <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-lg mx-auto">
             Thank you for shopping with Vedika Divine. Our Kushinagar unit has received your order and begun careful protective packaging for safe doorstep delivery.

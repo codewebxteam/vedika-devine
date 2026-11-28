@@ -170,7 +170,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </div>
             <span className="text-[10px] text-amber-500 font-semibold flex items-center gap-1">
               <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-              100% Plant Soy Wax
+              100% Vedic & Pure
             </span>
           </div>
 
@@ -183,7 +183,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 ? "bg-white hover:bg-amber-400 text-black hover:text-black"
                 : "bg-black hover:bg-stone-900 text-white"
             }`}
-            title={inCart ? "In your cart (Click to add more)" : "Add Candle to Bag"}
+            title={inCart ? "In your cart (Click to add more)" : "Add Item to Bag"}
           >
             {inCart ? (
               <>

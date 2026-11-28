@@ -47,7 +47,7 @@ export default function SeedPage() {
             Firestore Database Seeder
           </h1>
           <p className="text-xs text-stone-400 mt-1">
-            Populate your Firebase Firestore with authentic candle products, scents, burn times, and wholesale cartons.
+            Populate your Firebase Firestore with authentic sacred pooja products, Bhimseni kapur, ghee diyas, and wholesale cartons.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function SeedPage() {
           className="px-5 py-2.5 rounded-2xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md shadow-amber-950/60 transition-colors cursor-pointer self-start sm:self-auto"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${seeding ? "animate-spin" : ""}`} />
-          <span>{seeding ? "Populating Firestore..." : "Seed All Candles"}</span>
+          <span>{seeding ? "Populating Firestore..." : "Seed All Products"}</span>
         </button>
       </div>
 
@@ -83,7 +83,7 @@ export default function SeedPage() {
             <p className="text-[11px] opacity-90 mt-0.5">
               {result.error
                 ? result.error
-                : "All candle items are now saved in Firestore 'products' collection and visible in your Admin Catalog & Storefront."}
+                : "All sacred pooja items are now saved in Firestore 'products' collection and visible in your Admin Catalog & Storefront."}
             </p>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function SeedPage() {
       <div className="space-y-3">
         <h3 className="font-bold text-white text-sm flex items-center gap-2">
           <Flame className="w-4 h-4 text-amber-400" />
-          <span>Ready to Seed Catalog ({SAMPLE_PRODUCTS.length} Candles)</span>
+          <span>Ready to Seed Catalog ({SAMPLE_PRODUCTS.length} Products)</span>
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

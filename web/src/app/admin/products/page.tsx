@@ -83,7 +83,7 @@ export default function AdminProductsPage() {
     if (products.length === 0) return;
     if (
       !confirm(
-        `Are you sure you want to permanently DELETE ALL ${products.length} products? This will completely empty the catalog from Firestore so you can add your genuine candles.`
+        `Are you sure you want to permanently DELETE ALL ${products.length} products? This will completely empty the catalog from Firestore so you can add your genuine products.`
       )
     )
       return;
@@ -91,7 +91,7 @@ export default function AdminProductsPage() {
     try {
       await clearAllProducts();
       setProducts([]);
-      setAlertMsg("All candle products cleared permanently from catalog!");
+      setAlertMsg("All products cleared permanently from catalog!");
       setTimeout(() => setAlertMsg(null), 3500);
     } catch (err: any) {
       setAlertMsg(`Failed to clear: ${err.message}`);
@@ -120,13 +120,13 @@ export default function AdminProductsPage() {
         <div>
           <div className="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
             <Flame className="w-4 h-4 fill-amber-400" />
-            <span>Mombatti Catalog & Inventory</span>
+            <span>Pooja Samagri & Product Catalog</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
-            Candle Products Management
+            Product Catalog Management (पूजा सामग्री)
           </h1>
           <p className="text-xs text-stone-400 mt-1">
-            Compact inventory list • Click &ldquo;View More / Edit&rdquo; to modify scents, wax formula, burn hours, and wholesale pricing.
+            Compact inventory list • Click &ldquo;View More / Edit&rdquo; to modify specifications, fragrances, and wholesale carton pricing.
           </p>
         </div>
 
@@ -165,7 +165,7 @@ export default function AdminProductsPage() {
             className="px-5 py-2.5 rounded-2xl bg-amber-600 hover:bg-amber-500 text-stone-950 text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md shadow-amber-950/60 transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
-            <span>2. Add New Candle</span>
+            <span>2. Add New Product</span>
           </button>
         </div>
       </div>
@@ -185,7 +185,7 @@ export default function AdminProductsPage() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by candle name, scent, wax..."
+            placeholder="Search by product name, category, fragrance..."
             className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-stone-900 border border-stone-800 text-xs text-stone-100 placeholder-stone-500 focus:outline-hidden focus:border-amber-500"
           />
         </div>
@@ -210,7 +210,7 @@ export default function AdminProductsPage() {
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="bg-stone-950/70 border-b border-stone-800 text-stone-400 font-semibold uppercase tracking-wider text-[10px]">
-                <th className="py-3.5 px-4">Candle Product</th>
+                <th className="py-3.5 px-4">Sacred Product</th>
                 <th className="py-3.5 px-4">Category</th>
                 <th className="py-3.5 px-4">Retail Price</th>
                 <th className="py-3.5 px-4">Stock Level</th>
@@ -222,7 +222,7 @@ export default function AdminProductsPage() {
               {filteredProducts.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-12 text-center text-stone-500">
-                    No candle products found. Click &ldquo;Add New Candle&rdquo; to add your first product.
+                    No products found. Click &ldquo;Add New Product&rdquo; to add your first product.
                   </td>
                 </tr>
               ) : (
@@ -313,7 +313,7 @@ export default function AdminProductsPage() {
                             onClick={() => handleDelete(p)}
                             disabled={deletingId === p.id}
                             className="p-1.5 rounded-xl text-stone-500 hover:text-rose-400 hover:bg-stone-800 transition-colors"
-                            title="Delete Candle"
+                            title="Delete Product"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>

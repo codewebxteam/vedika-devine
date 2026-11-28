@@ -75,7 +75,7 @@ function ShopContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/15 border border-amber-400/40 text-amber-300 text-xs font-semibold uppercase tracking-wider shadow-xs">
             <Sparkles className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span>Handcrafted Candle Catalog</span>
+            <span>Sacred Pooja Samagri & Living Catalog</span>
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
@@ -95,25 +95,25 @@ function ShopContent() {
               </>
             ) : (
               <>
-                All Artisanal{" "}
+                All Sacred{" "}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-400 via-amber-200 to-amber-500">
-                  Scented Candles
+                  Pooja Samagri & Essentials
                 </span>
               </>
             )}
           </h1>
 
           <p className="text-xs sm:text-sm text-stone-300 max-w-xl mx-auto leading-relaxed">
-            100% pure plant soy wax, IFRA therapeutic grade fragrances, crackling wood wicks, and lead-free cotton wicks hand-poured in Kushinagar.
+            100% pure Bhimseni camphor, natural cow ghee diya batti, herbal bamboo-less dhoop, hawan essentials, and divine temple aromas crafted in Kushinagar.
           </p>
 
           {/* Quick Stats Pill Row */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-[11px] font-semibold text-amber-300/90">
             <span className="px-3 py-1 rounded-full bg-stone-900 border border-amber-900/60">
-              🔥 50+ Hours Clean Burn
+              🔥 100% Vedic Purity
             </span>
             <span className="px-3 py-1 rounded-full bg-stone-900 border border-amber-900/60">
-              🌿 Zero Paraffin Wax
+              🌿 Pure Bhimseni & Cow Ghee
             </span>
             <span className="px-3 py-1 rounded-full bg-stone-900 border border-amber-900/60">
               📦 Pan-India Safe Delivery
@@ -136,7 +136,7 @@ function ShopContent() {
             </button>
 
             <p className="text-xs sm:text-sm text-stone-600 font-medium">
-              Showing <strong className="text-black font-bold">{products.length}</strong> luxury candle offerings
+              Showing <strong className="text-black font-bold">{products.length}</strong> sacred offerings
             </p>
           </div>
 
@@ -203,7 +203,7 @@ function ShopContent() {
               <h3 className="font-serif font-bold text-black text-sm mb-4 flex items-center justify-between border-b border-amber-100 pb-2">
                 <span className="flex items-center gap-2">
                   <Filter className="w-4 h-4 text-amber-700" />
-                  <span>Candle Categories</span>
+                  <span>Categories</span>
                 </span>
                 {selectedCategory && (
                   <button onClick={() => setSelectedCategory("")} className="text-[10px] text-amber-700 hover:underline">
@@ -289,14 +289,14 @@ function ShopContent() {
               <div className="py-24 text-center space-y-4">
                 <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
                 <p className="font-serif text-sm font-semibold text-black">
-                  Loading artisanal candle offerings...
+                  Loading sacred offerings...
                 </p>
               </div>
             ) : (
               <ProductGrid
                 products={products}
                 theme="light"
-                emptyMessage="No candle creations found matching your filter criteria."
+                emptyMessage="No sacred creations found matching your filter criteria."
               />
             )}
           </div>
@@ -311,7 +311,7 @@ function ShopContent() {
               <div className="flex items-center justify-between border-b border-amber-100 pb-4">
                 <h3 className="font-serif font-bold text-lg text-black flex items-center gap-2">
                   <SlidersHorizontal className="w-4 h-4 text-amber-600" />
-                  <span>Filter Candles</span>
+                  <span>Filter Products</span>
                 </h3>
                 <button
                   onClick={() => setMobileFilterOpen(false)}

@@ -30,7 +30,7 @@ export const SOCIAL_CHANNELS = [
     icon: InstagramIcon,
     colorClass: "hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10",
     gradientClass: "from-purple-600 via-pink-600 to-amber-500",
-    description: "Follow for daily candle aesthetics, customer reviews & festive reels",
+    description: "Follow for divine reels, pooja aesthetics, customer reviews & festive updates",
   },
   {
     id: "facebook",
